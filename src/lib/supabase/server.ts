@@ -10,11 +10,15 @@ export function createClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() { return cookieStore.getAll() },
-        setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
+        async getAll() { 
+          const store = await cookieStore
+          return store.getAll() 
+        },
+        async setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
           try {
+            const store = await cookieStore
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              store.set(name, value, options)
             )
           } catch {}
         },
@@ -31,11 +35,15 @@ export function createAdminClient() {
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {
       cookies: {
-        getAll() { return cookieStore.getAll() },
-        setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
+        async getAll() { 
+          const store = await cookieStore
+          return store.getAll() 
+        },
+        async setAll(cookiesToSet: { name: string; value: string; options?: any }[]) {
           try {
+            const store = await cookieStore
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              store.set(name, value, options)
             )
           } catch {}
         },
@@ -43,3 +51,4 @@ export function createAdminClient() {
     }
   )
 }
+
