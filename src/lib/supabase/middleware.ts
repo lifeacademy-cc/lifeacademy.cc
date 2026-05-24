@@ -29,8 +29,22 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  // Fetch authenticated user
-  const { data: { user } } = await supabase.auth.getUser()
+  // Fetch authenticated user with safety try-catch
+  let user = null
+  try {
+    // กำหนด timeout หรือการดึงข้อมูลอย่างปลอดภัยเพื่อไม่ให้ Edge Function ค้าง
+    const { data, error } = await Promise.race([
+      supabase.auth.getUser(),
+      new Promise<{ data: { user: null }; error: Error }>((_, reject) =>
+        setTimeout(() => reject(new Error('Supabase Auth Timeout')), 8000)
+      )
+    ])
+    if (!error && data) {
+      user = data.user
+    }
+  } catch (e) {
+    console.error('Supabase middleware auth error:', e)
+  }
   const pathname = request.nextUrl.pathname
 
   // Protected student routes (exclude parent portal)
