@@ -20,3 +20,11 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Environment & Secrets
+.env
+
+# Cloudflare & OpenNext build and development cache
+.wrangler/
+.open-next/
+
