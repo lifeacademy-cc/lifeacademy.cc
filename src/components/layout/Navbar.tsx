@@ -44,6 +44,7 @@ const navLinks: NavLink[] = [
       { href: '/about#vision', label: 'วิสัยทัศน์ - พันธกิจ' },
       { href: '/about#team', label: 'ผู้บริหาร ทีมงาน' },
       { href: '/teachers', label: 'ครูผู้สอน' },
+      { href: '/gallery', label: 'ภาพบรรยากาศ' },
     ]
   },
   { href: '/bookstore', label: 'ร้านหนังสือ' },

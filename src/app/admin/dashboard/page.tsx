@@ -2,12 +2,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import {
   Users, BookOpen, TrendingUp, MessageSquare,
-  ArrowUpRight, Clock, CheckCircle2,
+  ArrowUpRight, Clock, CheckCircle2, Plus, Calendar, Settings
 } from 'lucide-react'
 import Link from 'next/link'
 import YoutubeSettingForm from '@/components/admin/YoutubeSettingForm'
 
-export const metadata = { title: 'Admin Dashboard — LIFE Academy' }
+export const metadata = { title: 'Dashboard — Admin Panel' }
 
 const mockStats = {
   totalStudents:    127,
@@ -28,7 +28,7 @@ const statusConfig: Record<string, { label: string; color: string }> = {
   new:       { label: 'ใหม่',        color: 'bg-[#1a56db]/10 text-[#1a56db]' },
   contacted: { label: 'ติดต่อแล้ว',  color: 'bg-[#f59e0b]/10 text-[#f59e0b]' },
   enrolled:  { label: 'สมัครแล้ว',   color: 'bg-[#059669]/10 text-[#059669]' },
-  closed:    { label: 'ปิดแล้ว',     color: 'bg-gray-100 text-gray-500' },
+  closed:    { label: 'ปิดแล้ว',     color: 'bg-slate-100 text-slate-500' },
 }
 
 export default async function AdminDashboardPage() {
@@ -47,166 +47,158 @@ export default async function AdminDashboardPage() {
       youtubeUrl = data.value
     }
   } catch (e) {
-    // Fallback if table not queried
+    // Fallback
   }
 
-  // In production: check admin role
-  // const role = user.user_metadata?.role
-  // if (role !== 'admin') redirect('/')
-
   return (
-    <div className="min-h-screen bg-[#f0f4ff]">
-
-      {/* Admin header */}
-      <header className="bg-[#0f2557] text-white sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="font-display font-bold text-lg">LIFE Academy</span>
-            <span className="badge bg-white/20 text-white font-ui text-xs">Admin Panel</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-1">
-            {[
-              { href: '/admin/dashboard', label: 'Overview' },
-              { href: '/admin/students',  label: 'นักเรียน' },
-              { href: '/admin/courses',   label: 'หลักสูตร' },
-              { href: '/admin/reports',   label: 'รายงาน' },
-            ].map(l => (
-              <Link key={l.href} href={l.href}
-                className="px-3 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 text-sm font-ui transition-colors"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-2">
-            <span className="font-thai text-white/70 text-sm hidden sm:block">สวัสดี, Admin</span>
-            <div className="w-8 h-8 rounded-full bg-[#f59e0b] flex items-center justify-center text-[#0f2557] font-bold text-xs">A</div>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
-
-        {/* Page title */}
+    <div className="p-8 space-y-8 animate-fade-in">
+      {/* Page header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="font-display font-bold text-[#0f2557] text-2xl">ภาพรวมวันนี้</h1>
-          <p className="font-thai text-[#64748b] text-sm mt-1">
-            {new Date().toLocaleDateString('th-TH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-          </p>
+          <h1 className="font-display font-bold text-slate-900 text-2xl">Overview Dashboard</h1>
+          <div className="flex items-center gap-2 mt-1">
+            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+            <p className="font-thai text-slate-500 text-sm">
+              {new Date().toLocaleDateString('th-TH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+          </div>
         </div>
 
-        {/* KPI Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {[
-            { label: 'นักเรียนทั้งหมด',  value: mockStats.totalStudents,                  icon: Users,          color: 'text-[#1a56db]', bg: 'bg-[#1a56db]/10' },
-            { label: 'Active',           value: mockStats.activeStudents,                  icon: CheckCircle2,   color: 'text-[#059669]', bg: 'bg-[#059669]/10' },
-            { label: 'สอบถามใหม่',       value: mockStats.newInquiries,                    icon: MessageSquare,  color: 'text-[#f59e0b]', bg: 'bg-[#f59e0b]/10' },
-            { label: 'รายได้เดือนนี้',   value: `฿${mockStats.monthlyRevenue.toLocaleString()}`, icon: TrendingUp, color: 'text-[#7c3aed]', bg: 'bg-[#7c3aed]/10' },
-            { label: 'เข้าเรียน',        value: `${mockStats.attendanceRate}%`,            icon: CheckCircle2,   color: 'text-[#059669]', bg: 'bg-[#059669]/10' },
-            { label: 'คาบวันนี้',        value: mockStats.upcomingLessons,                 icon: Clock,          color: 'text-[#0891b2]', bg: 'bg-[#0891b2]/10' },
-          ].map(stat => (
-            <div key={stat.label} className="card flex flex-col gap-2">
-              <div className={`w-9 h-9 rounded-xl ${stat.bg} flex items-center justify-center`}>
-                <stat.icon className={`w-4 h-4 ${stat.color}`} />
-              </div>
-              <div className={`font-ui font-bold text-xl ${stat.color}`}>{stat.value}</div>
-              <div className="font-thai text-[#64748b] text-xs">{stat.label}</div>
+        <div className="flex items-center gap-3">
+          <Link href="/admin/articles/new" className="btn-outline py-2 px-4 text-xs font-semibold">
+            <Plus className="w-3.5 h-3.5 mr-1.5" /> New Article
+          </Link>
+          <Link href="/admin/students/new" className="btn-primary py-2 px-4 text-xs font-semibold">
+            <Plus className="w-3.5 h-3.5 mr-1.5" /> Add Student
+          </Link>
+        </div>
+      </div>
+
+      {/* KPI Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        {[
+          { label: 'นักเรียนทั้งหมด',  value: mockStats.totalStudents,                  icon: Users,          color: 'text-[#1a56db]', bg: 'bg-[#1a56db]/10' },
+          { label: 'Active',           value: mockStats.activeStudents,                  icon: CheckCircle2,   color: 'text-[#059669]', bg: 'bg-[#059669]/10' },
+          { label: 'สอบถามใหม่',       value: mockStats.newInquiries,                    icon: MessageSquare,  color: 'text-[#f59e0b]', bg: 'bg-[#f59e0b]/10' },
+          { label: 'รายได้เดือนนี้',   value: `฿${mockStats.monthlyRevenue.toLocaleString()}`, icon: TrendingUp, color: 'text-[#7c3aed]', bg: 'bg-[#7c3aed]/10' },
+          { label: 'เข้าเรียน',        value: `${mockStats.attendanceRate}%`,            icon: CheckCircle2,   color: 'text-[#059669]', bg: 'bg-[#059669]/10' },
+          { label: 'คาบวันนี้',        value: mockStats.upcomingLessons,                 icon: Clock,          color: 'text-[#0891b2]', bg: 'bg-[#0891b2]/10' },
+        ].map(stat => (
+          <div key={stat.label} className="card border-slate-200/60 flex flex-col gap-2 group hover:border-[#1a56db]/30 transition-all hover:shadow-md">
+            <div className={`w-9 h-9 rounded-xl ${stat.bg} flex items-center justify-center transition-transform group-hover:scale-110`}>
+              <stat.icon className={`w-4 h-4 ${stat.color}`} />
             </div>
-          ))}
+            <div className={`font-ui font-black text-2xl ${stat.color}`}>{stat.value}</div>
+            <div className="font-thai text-slate-500 text-xs font-medium">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* New inquiries */}
+        <div className="lg:col-span-2 card border-slate-200/60 p-0 overflow-hidden shadow-sm">
+          <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50/50">
+            <div>
+              <h2 className="font-ui font-bold text-slate-900">Recent Inquiries</h2>
+              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-ui mt-0.5">Latest 5 messages</p>
+            </div>
+            <Link href="/admin/students?tab=inquiries"
+              className="flex items-center gap-1.5 text-[#1a56db] text-xs font-ui font-bold hover:text-[#0f2557] transition-colors"
+            >
+              View All <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-slate-50/30">
+                  {['ชื่อ', 'เบอร์โทร', 'วิชา / ระดับ', 'สถานะ', ''].map(h => (
+                    <th key={h} className="py-3 px-6 text-left text-[10px] font-ui font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {mockInquiries.map(inq => {
+                  const s = statusConfig[inq.status] ?? statusConfig.new
+                  return (
+                    <tr key={inq.id} className="hover:bg-slate-50/50 transition-colors group">
+                      <td className="py-4 px-6">
+                        <div className="font-thai font-bold text-slate-900 text-sm group-hover:text-[#1a56db] transition-colors">{inq.name}</div>
+                        <div className="font-ui text-slate-400 text-[10px] flex items-center gap-1 mt-0.5">
+                          <Clock className="w-3 h-3" /> {inq.createdAt}
+                        </div>
+                      </td>
+                      <td className="py-4 px-6 font-ui text-slate-600 text-sm font-medium">{inq.phone}</td>
+                      <td className="py-4 px-6">
+                        <div className="font-thai text-slate-800 text-xs font-semibold">{inq.subject}</div>
+                        <div className="font-thai text-slate-400 text-[10px]">{inq.level}</div>
+                      </td>
+                      <td className="py-4 px-6">
+                        <span className={`badge ${s.color} text-[10px] px-2 py-0.5 font-bold`}>{s.label}</span>
+                      </td>
+                      <td className="py-4 px-6 text-right">
+                        <a href={`tel:${inq.phone}`}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 text-[10px] font-ui font-bold hover:bg-[#1a56db] hover:text-white transition-all shadow-sm"
+                        >
+                          📞 Call
+                        </a>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        {/* Quick sidebar */}
+        <div className="space-y-6">
+          {/* YouTube Video Setting Form */}
+          <YoutubeSettingForm initialUrl={youtubeUrl} />
 
-          {/* New inquiries */}
-          <div className="lg:col-span-2 card">
-            <div className="flex items-center justify-between mb-5">
-              <h2 className="font-ui font-bold text-[#0f2557]">สอบถามล่าสุด</h2>
-              <Link href="/admin/students?tab=inquiries"
-                className="flex items-center gap-1 text-[#1a56db] text-xs font-ui font-semibold hover:underline"
-              >
-                ดูทั้งหมด <ArrowUpRight className="w-3 h-3" />
-              </Link>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#e2e8f0]">
-                    {['ชื่อ', 'เบอร์', 'วิชา', 'ระดับ', 'สถานะ', ''].map(h => (
-                      <th key={h} className="pb-3 text-left text-xs font-ui font-semibold text-[#64748b] first:pl-0 px-2">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {mockInquiries.map(inq => {
-                    const s = statusConfig[inq.status] ?? statusConfig.new
-                    return (
-                      <tr key={inq.id} className="border-b border-[#f0f4ff] hover:bg-[#f8fafc] transition-colors">
-                        <td className="py-3 pl-0 px-2">
-                          <div className="font-thai font-semibold text-[#0f2557] text-sm">{inq.name}</div>
-                          <div className="font-ui text-[#94a3b8] text-xs">{inq.createdAt}</div>
-                        </td>
-                        <td className="py-3 px-2 font-ui text-[#64748b] text-sm">{inq.phone}</td>
-                        <td className="py-3 px-2 font-thai text-[#0f2557] text-sm">{inq.subject}</td>
-                        <td className="py-3 px-2 font-thai text-[#64748b] text-sm">{inq.level}</td>
-                        <td className="py-3 px-2">
-                          <span className={`badge ${s.color} text-xs`}>{s.label}</span>
-                        </td>
-                        <td className="py-3 px-2">
-                          <a href={`tel:${inq.phone}`}
-                            className="text-[#1a56db] text-xs font-ui font-semibold hover:underline whitespace-nowrap"
-                          >
-                            📞 โทร
-                          </a>
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
+          <div className="card border-slate-200/60 shadow-sm">
+            <h2 className="font-ui font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <Settings className="w-4 h-4 text-[#1a56db]" /> Quick Links
+            </h2>
+            <div className="space-y-1.5">
+              {[
+                { href: '/admin/students/new',    label: 'เพิ่มนักเรียนใหม่',   icon: Users, color: 'text-blue-500', bg: 'bg-blue-50' },
+                { href: '/admin/courses',         label: 'จัดการหลักสูตร',       icon: BookOpen, color: 'text-emerald-500', bg: 'bg-emerald-50' },
+                { href: '/admin/reports',         label: 'สรุปรายได้ประจำเดือน', icon: TrendingUp, color: 'text-purple-500', bg: 'bg-purple-50' },
+                { href: '/admin/articles/new',    label: 'เขียนบทความใหม่',      icon: Plus, color: 'text-amber-500', bg: 'bg-amber-50' },
+              ].map(l => (
+                <Link key={l.href} href={l.href}
+                  className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                >
+                  <div className={`w-8 h-8 rounded-lg ${l.bg} flex items-center justify-center transition-transform group-hover:scale-110`}>
+                    <l.icon className={`w-4 h-4 ${l.color}`} />
+                  </div>
+                  <span className="font-thai text-slate-700 text-sm font-medium">{l.label}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-300 ml-auto group-hover:text-[#1a56db] transition-colors" />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Quick sidebar */}
-          <div className="space-y-4">
-            <div className="card">
-              <h2 className="font-ui font-bold text-[#0f2557] mb-4">ลิงก์ด่วน</h2>
-              <div className="space-y-2">
-                {[
-                  { href: '/admin/students/new',    label: 'เพิ่มนักเรียนใหม่',   icon: '👤' },
-                  { href: '/admin/courses',         label: 'จัดการหลักสูตร',       icon: '📚' },
-                  { href: '/admin/reports',         label: 'ออก Report ประจำเดือน', icon: '📊' },
-                  { href: '/admin/students?export', label: 'Export CSV',          icon: '📥' },
-                ].map(l => (
-                  <Link key={l.href} href={l.href}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f0f4ff] transition-colors"
-                  >
-                    <span className="text-base">{l.icon}</span>
-                    <span className="font-thai text-[#0f2557] text-sm">{l.label}</span>
-                    <ArrowUpRight className="w-3 h-3 text-[#94a3b8] ml-auto" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* YouTube Video Setting Form */}
-            <YoutubeSettingForm initialUrl={youtubeUrl} />
-
-            <div className="rounded-2xl bg-gradient-to-br from-[#0f2557] to-[#1a56db] p-5 text-white">
-              <div className="font-ui font-bold mb-1">📢 แจ้งเตือน</div>
-              <div className="font-thai text-white/70 text-sm">
-                มีนักเรียน 3 คนยังไม่ชำระค่าเรียนเดือนนี้
+          <div className="rounded-3xl bg-gradient-to-br from-[#0f2557] to-[#1a56db] p-6 text-white shadow-lg relative overflow-hidden">
+            <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="relative z-10">
+              <div className="font-ui font-black text-xs uppercase tracking-widest text-white/50 mb-2">Pending Task</div>
+              <div className="font-display font-bold text-lg mb-1">📢 ค่าเรียนค้างชำระ</div>
+              <div className="font-thai text-white/70 text-sm leading-relaxed">
+                มีนักเรียน <span className="text-[#f59e0b] font-bold">3 คน</span> ยังไม่ได้ชำระค่าเรียนเดือนมิถุนายน
               </div>
               <Link href="/admin/reports?tab=payment"
-                className="inline-block mt-3 text-xs font-ui font-semibold text-[#f59e0b] hover:underline"
+                className="inline-flex items-center gap-1.5 mt-4 text-[10px] font-ui font-black text-[#f59e0b] hover:text-white transition-colors uppercase tracking-widest"
               >
-                ดูรายละเอียด →
+                View Details <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

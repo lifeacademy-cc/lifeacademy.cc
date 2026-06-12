@@ -59,6 +59,7 @@ export default function Footer() {
                 { href: '/',          label: 'หน้าแรก' },
                 { href: '/courses',   label: 'หลักสูตรทั้งหมด' },
                 { href: '/teachers',  label: 'ครูผู้สอน' },
+                { href: '/gallery',   label: 'ภาพบรรยากาศ' },
                 { href: '/news',      label: 'ข่าวกิจกรรม' },
                 { href: '/contact',   label: 'ติดต่อสอบถาม' },
                 { href: '/login',     label: 'เข้าสู่ระบบนักเรียน' },

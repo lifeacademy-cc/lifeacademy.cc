@@ -6,7 +6,7 @@ import { Image as ImageIcon, Sparkles, X, ChevronLeft, ChevronRight, Filter } fr
 interface GalleryItem {
   id: number
   src: string
-  category: 'booth' | 'active' | 'mind'
+  category: 'booth' | 'active' | 'mind' | 'classroom'
   title: string
   desc: string
 }
@@ -96,10 +96,102 @@ const galleryItems: GalleryItem[] = [
     title: 'ความสนใจอย่างล้นหลามจากครอบครัวหาดใหญ่',
     desc: 'ผู้ปกครองและนักเรียนให้การตอบรับอย่างอบอุ่นและสมัครเข้าร่วมวัดระดับฟรีกันอย่างคึกคัก',
   },
+  {
+    id: 13,
+    src: '/classroom/classroom-1.jpg',
+    category: 'classroom',
+    title: 'บรรยากาศการเรียนการสอนที่เป็นกันเอง',
+    desc: 'คุณครูใส่ใจดูแลนักเรียนอย่างใกล้ชิด เน้นการปฏิสัมพันธ์และการตั้งคำถามเพื่อกระตุ้นการคิดวิเคราะห์',
+  },
+  {
+    id: 14,
+    src: '/classroom/classroom-2.jpg',
+    category: 'classroom',
+    title: 'ห้องเรียนขนาดเล็กเพื่อการดูแลที่ทั่วถึง',
+    desc: 'จัดห้องเรียนสไตล์ Onsite ที่มีจำนวนนักเรียนจำกัดต่อห้อง ช่วยให้คุณครูสามารถเข้าถึงและช่วยเหลือเด็กๆ ได้เป็นรายบุคคล',
+  },
+  {
+    id: 15,
+    src: '/classroom/classroom-3.jpg',
+    category: 'classroom',
+    title: 'รอยยิ้มและความสนุกสนานในห้องเรียน',
+    desc: 'เด็กๆ มีความสุขและสนุกไปกับการเรียนรู้ผ่านกิจกรรมที่เป็นกันเอง ช่วยลดความตึงเครียดและเพิ่มประสิทธิภาพการจดจำ',
+  },
+  {
+    id: 16,
+    src: '/classroom/classroom-4.jpg',
+    category: 'classroom',
+    title: 'ความตั้งใจและสมาธิในการฝึกฝนโจทย์',
+    desc: 'บรรยากาศห้องเรียนระดับมัธยมศึกษาตอนต้น นักเรียนทุกคนมุ่งมั่นตั้งใจทำแบบฝึกหัดเพื่อเตรียมความพร้อมสู่สนามสอบ',
+  },
+  {
+    id: 17,
+    src: '/classroom/classroom-5.jpg',
+    category: 'classroom',
+    title: 'การทำงานกลุ่มและปรึกษาหารือ',
+    desc: 'ส่งเสริมการเรียนรู้ร่วมกัน (Collaborative Learning) แลกเปลี่ยนความคิดเห็นเพื่อหาคำตอบและพัฒนาทักษะการทำงานเป็นทีม',
+  },
+  {
+    id: 18,
+    src: '/classroom/classroom-6.jpg',
+    category: 'classroom',
+    title: 'การจดบันทึกและการจัดระเบียบความคิด',
+    desc: 'เด็กๆ ได้รับการฝึกฝนการสรุปเนื้อหาและการจดโน้ตย่อที่เป็นระบบเพื่อความเข้าใจและการทบทวนที่ง่ายขึ้น',
+  },
+  {
+    id: 19,
+    src: '/classroom/classroom-7.jpg',
+    category: 'classroom',
+    title: 'การวางแผนหลักสูตรและแนะแนวการศึกษา',
+    desc: 'ทีมวิชาการร่วมประชุมออกแบบบทเรียนและวางแผนการติวรายสัปดาห์ เพื่อปรับระดับการเรียนการสอนให้ตรงกับเป้าหมายของเด็กๆ',
+  },
+  {
+    id: 20,
+    src: '/classroom/classroom-8.jpg',
+    category: 'classroom',
+    title: 'ความผูกพันและอบอุ่นระหว่างครูกับศิษย์',
+    desc: 'ภาพความประทับใจร่วมกันหลังคาบเรียนที่เปี่ยมด้วยพลังบวกและการให้กำลังใจซึ่งกันและกันในครอบครัว LIFE Academy',
+  },
+  {
+    id: 21,
+    src: '/classroom/classroom-9.jpg',
+    category: 'classroom',
+    title: 'ตำราเรียนมาตรฐานและสื่อการสอนที่ทันสมัย',
+    desc: 'นักเรียนภูมิใจนำเสนอหนังสือและชีทสรุปสูตรลัดเฉพาะของสถาบันฯ ที่ออกแบบมาเพื่อให้เข้าใจง่ายและทำข้อสอบได้จริง',
+  },
+  {
+    id: 22,
+    src: '/classroom/classroom-10.jpg',
+    category: 'classroom',
+    title: 'ห้องเรียนสมาธิและการจดจ่อระดับประถม',
+    desc: 'บรรยากาศห้องเรียนระดับประถมศึกษาที่เน้นความเงียบสงบและการสร้างโฟกัสในการเขียนและคำนวณ',
+  },
+  {
+    id: 23,
+    src: '/classroom/classroom-11.jpg',
+    category: 'classroom',
+    title: 'การเรียนรู้ผ่านสื่อดิจิทัลและเทคโนโลยี',
+    desc: 'นำเทคโนโลยี Interactive Screen มาช่วยในการนำเสนอโจทย์และสูตรคณิตศาสตร์แบบมีสีสันและเห็นภาพชัดเจน',
+  },
+  {
+    id: 24,
+    src: '/classroom/classroom-12.jpg',
+    category: 'classroom',
+    title: 'การโค้ชชิ่งและประเมินผลรายบุคคล',
+    desc: 'คุณครูช่วยแนะแนวแนวข้อสอบและตรวจประเมินจุดเด่น-จุดแก้ไขของนักเรียนอย่างละเอียดและเป็นระบบ',
+  },
+  {
+    id: 25,
+    src: '/classroom/classroom-13.jpg',
+    category: 'classroom',
+    title: 'ความภาคภูมิใจในความก้าวหน้าทางการเรียน',
+    desc: 'ความสุขของเด็กๆ เมื่อสามารถทำความเข้าใจเนื้อหาฟิสิกส์และวิทยาศาสตร์ระดับยากได้อย่างทะลุปรุโปร่ง',
+  },
 ]
 
 const categories = [
   { value: 'all', label: '📸 ภาพทั้งหมด' },
+  { value: 'classroom', label: '🏫 บรรยากาศการเรียน' },
   { value: 'booth', label: '🎪 บรรยากาศออกบูธ' },
   { value: 'active', label: '🧪 กิจกรรม Active Learning' },
   { value: 'mind', label: '🧠 ฝึกสมาธิ & คลื่นสมอง' },
@@ -193,7 +285,7 @@ export default function ExhibitionGallery() {
                 </div>
                 
                 <span className="inline-block self-start font-thai text-[9px] font-bold px-2 py-0.5 bg-[#f0f4ff] text-[#1a56db] rounded-lg mt-3 uppercase tracking-wider">
-                  {item.category === 'booth' ? '🎪 ออกบูธ' : item.category === 'active' ? '🧪 Active Learning' : '🧠 คลื่นสมอง & สมาธิ'}
+                  {item.category === 'booth' ? '🎪 ออกบูธ' : item.category === 'active' ? '🧪 Active Learning' : item.category === 'mind' ? '🧠 คลื่นสมอง & สมาธิ' : '🏫 บรรยากาศการเรียน'}
                 </span>
               </div>
             </div>
