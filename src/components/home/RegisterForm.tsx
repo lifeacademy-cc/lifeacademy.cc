@@ -3,21 +3,7 @@
 import { useState } from 'react'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
 import type { RegisterFormInput } from '@/types'
-import { LEVELS } from '@/types'
-
-const subjects = [
-  { value: 'exam_m1',        label: 'ติวเข้า ม.1 🎯' },
-  { value: 'exam_m4',        label: 'ติวเข้า ม.4 🎯' },
-  { value: 'exam_m1_pccp',   label: 'ติวเข้า ม.1 จุฬาภรณ์ฯ 🏆' },
-  { value: 'math',           label: 'คณิตศาสตร์ 📐' },
-  { value: 'english',        label: 'ภาษาอังกฤษ 🔤' },
-  { value: 'science',        label: 'วิทยาศาสตร์ 🔬' },
-  { value: 'thai',           label: 'ภาษาไทย 📖' },
-  { value: 'physics',        label: 'ฟิสิกส์ ⚡' },
-  { value: 'chemistry',      label: 'เคมี 🧪' },
-  { value: 'biology',        label: 'ชีววิทยา 🌿' },
-  { value: 'social',         label: 'สังคมศึกษา 🌏' },
-]
+import { LEVELS, SUBJECTS } from '@/types'
 
 const INITIAL: RegisterFormInput = {
   name: '', phone: '', email: '',
@@ -139,7 +125,7 @@ export default function RegisterForm() {
           </label>
           <select value={form.subject} onChange={e => set('subject', e.target.value)} className="field-input" required>
             <option value="">เลือกวิชา...</option>
-            {subjects.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+            {SUBJECTS.map(s => <option key={s.value} value={s.value}>{s.label} {s.icon}</option>)}
           </select>
         </div>
       </div>
