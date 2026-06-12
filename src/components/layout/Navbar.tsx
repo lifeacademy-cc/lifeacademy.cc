@@ -19,7 +19,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: '/', label: 'หน้าหลัก' },
   {
-    href: '/#courses',
+    href: '/courses',
     label: 'หลักสูตร',
     submenu: [
       { href: '/courses?level=exam&q=ม.1', label: 'ติวเข้า ม.1' },
@@ -38,9 +38,9 @@ const navLinks: NavLink[] = [
       { href: '/life-future-skill', label: 'Life Future Skill' },
     ]
   },
-  { href: '/#success', label: 'คนเก่งของเรา' },
+  { href: '/hall-of-fame', label: 'คนเก่งของเรา' },
   {
-    href: '/#about',
+    href: '/about',
     label: 'เกี่ยวกับเรา',
     submenu: [
       { href: '/about#history', label: 'ประวัติความเป็นมา' },
