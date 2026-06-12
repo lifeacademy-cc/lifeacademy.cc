@@ -159,8 +159,7 @@ export default function HeroSection() {
 
 // ─── Course Finder Widget ─────────────────────────────────
 
-const levels  = ['อนุบาล', 'ป.1', 'ป.2', 'ป.3', 'ป.4', 'ป.5', 'ป.6', 'ม.1', 'ม.2', 'ม.3']
-const subjects = ['คณิตศาสตร์', 'ภาษาอังกฤษ', 'วิทยาศาสตร์', 'ภาษาไทย', 'สังคมศึกษา', 'ติวเข้า ม.1', 'ติวเข้า ม.1 จุฬาภรณ์ฯ', 'พัฒนาทักษะชีวิต', 'พัฒนาสมาธิ']
+import { LEVELS, SUBJECTS } from '@/types'
 
 function CourseFinder() {
   const [level,   setLevel]   = useState('')
@@ -170,6 +169,10 @@ function CourseFinder() {
   const handleSubmit = () => {
     if (level && subject) setDone(true)
   }
+
+  // Helper to get labels for display
+  const levelLabel = LEVELS.find(l => l.value === level)?.label || level
+  const subjectLabel = SUBJECTS.find(s => s.value === subject)?.label || subject
 
   return (
     <div className="bg-white rounded-3xl p-6 shadow-2xl border border-white/5 animate-float">
@@ -193,7 +196,9 @@ function CourseFinder() {
               className="field-input"
             >
               <option value="">เลือกระดับชั้น...</option>
-              {levels.map(l => <option key={l} value={l}>{l}</option>)}
+              {LEVELS.filter(l => l.value !== 'future_skill').map(l => (
+                <option key={l.value} value={l.value}>{l.label}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -204,7 +209,9 @@ function CourseFinder() {
               className="field-input"
             >
               <option value="">เลือกวิชา...</option>
-              {subjects.map(s => <option key={s} value={s}>{s}</option>)}
+              {SUBJECTS.map(s => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
             </select>
           </div>
           <button
@@ -220,7 +227,7 @@ function CourseFinder() {
           <div className="p-4 rounded-2xl bg-[#f0f4ff] border border-[#e2e8f0]">
             <div className="text-[#0f2557] font-semibold font-thai text-sm mb-1">🎯 เหมาะกับคุณมาก!</div>
             <div className="text-[#64748b] text-xs font-thai">
-              {level} • {subject}
+              {levelLabel} • {subjectLabel}
             </div>
             <div className="mt-2 text-[#1a56db] text-xs font-semibold font-ui">
               พบ 3 หลักสูตรที่แนะนำ
