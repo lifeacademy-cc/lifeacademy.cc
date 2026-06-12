@@ -183,7 +183,7 @@ export default function LevelTestInteractive() {
               <div>
                 <label className="field-label flex items-center gap-1.5">🎒 ระดับการศึกษา</label>
                 <div className="grid grid-cols-2 gap-3">
-                  {levels.map((l) => (
+                  {LEVELS.filter(l => l.value !== 'future_skill').map((l) => (
                     <button
                       key={l.value}
                       onClick={() => setLevel(l.value)}
@@ -194,7 +194,7 @@ export default function LevelTestInteractive() {
                           : 'border-border/60 hover:border-blue-200'
                       )}
                     >
-                      <span className="text-base">{l.icon}</span> {l.label}
+                      {l.label}
                     </button>
                   ))}
                 </div>

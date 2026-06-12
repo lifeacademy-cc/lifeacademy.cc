@@ -92,11 +92,19 @@ export default function CourseListInteractive({
     })
 
     return [
-      { key: 'all',       label: 'ทั้งหมด',     count: baseList.length },
-      { key: 'primary',   label: 'ประถม',       count: baseList.filter(c => c.level === 'primary').length },
-      { key: 'secondary', label: 'ม.ต้น',       count: baseList.filter(c => c.level === 'secondary').length },
+      { key: 'all', label: 'ทั้งหมด', count: baseList.length },
+      { key: 'kg', label: 'อนุบาล', count: baseList.filter(c => c.level === 'kg').length },
+      { key: 'p1', label: 'ป.1', count: baseList.filter(c => c.level === 'p1').length },
+      { key: 'p2', label: 'ป.2', count: baseList.filter(c => c.level === 'p2').length },
+      { key: 'p3', label: 'ป.3', count: baseList.filter(c => c.level === 'p3').length },
+      { key: 'p4', label: 'ป.4', count: baseList.filter(c => c.level === 'p4').length },
+      { key: 'p5', label: 'ป.5', count: baseList.filter(c => c.level === 'p5').length },
+      { key: 'p6', label: 'ป.6', count: baseList.filter(c => c.level === 'p6').length },
+      { key: 'm1', label: 'ม.1', count: baseList.filter(c => c.level === 'm1').length },
+      { key: 'm2', label: 'ม.2', count: baseList.filter(c => c.level === 'm2').length },
+      { key: 'm3', label: 'ม.3', count: baseList.filter(c => c.level === 'm3').length },
       { key: 'future_skill', label: 'Life Future Skill', count: baseList.filter(c => c.level === 'future_skill').length },
-    ]
+    ].filter(tab => tab.key === 'all' || tab.count > 0) // Only show tabs with actual courses to avoid clutter
   }, [initialCourses, selectedSubject, selectedFormat, searchQuery])
 
   const handleReset = () => {
