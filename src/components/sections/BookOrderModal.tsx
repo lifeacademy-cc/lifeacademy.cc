@@ -14,14 +14,14 @@ interface OrderForm {
   customerName: string
   phone: string
   address: string
-  paymentMethod: string
+  quantity: number
 }
 
 const INITIAL_FORM: OrderForm = {
   customerName: '',
   phone: '',
   address: '',
-  paymentMethod: 'โอนเงินผ่านธนาคาร'
+  quantity: 1
 }
 
 export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: BookOrderModalProps) {
@@ -32,7 +32,8 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
 
   if (!isOpen) return null
 
-  const set = (k: keyof OrderForm, v: string) => setForm(prev => ({ ...prev, [k]: v }))
+  const set = (k: keyof OrderForm, v: string | number) => setForm(prev => ({ ...prev, [k]: v }))
+  const totalPrice = price * form.quantity
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,11 +51,12 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           bookTitle,
-          totalPrice: form.paymentMethod.includes('ปลายทาง') ? price + 20 : price,
+          quantity: form.quantity,
+          totalPrice,
           customerName: form.customerName,
           phone: form.phone,
           address: form.address,
-          paymentMethod: form.paymentMethod
+          paymentMethod: 'โอนเงินผ่านธนาคาร'
         }),
       })
       
@@ -116,9 +118,17 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
               <div className="bg-[#f0f4ff] border border-[#1a56db]/20 rounded-2xl p-4 mb-2">
                 <div className="font-thai text-xs text-slate-500 mb-1">รายการสั่งซื้อ:</div>
                 <div className="font-ui font-bold text-[#0f2557] leading-tight mb-2">{bookTitle}</div>
+                <div className="flex justify-between items-center text-xs font-thai text-slate-500 mt-1">
+                  <span>ราคาต่อเล่ม</span>
+                  <span>฿{price.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center text-xs font-thai text-slate-500">
+                  <span>จำนวน</span>
+                  <span>{form.quantity} เล่ม</span>
+                </div>
                 <div className="flex justify-between items-center border-t border-[#1a56db]/10 pt-2 mt-2">
                   <span className="font-thai text-sm text-slate-600">ยอดชำระสุทธิ</span>
-                  <span className="font-ui font-black text-[#1a56db] text-lg">฿{price}</span>
+                  <span className="font-ui font-black text-[#1a56db] text-lg">฿{totalPrice.toLocaleString()}</span>
                 </div>
               </div>
 
@@ -147,6 +157,25 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
               </div>
 
               <div>
+                <label className="field-label">จำนวน (เล่ม) <span className="text-red-500">*</span></label>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => set('quantity', Math.max(1, form.quantity - 1))}
+                    className="w-10 h-10 rounded-xl border-2 border-slate-200 hover:border-[#1a56db] text-[#0f2557] font-bold text-xl flex items-center justify-center transition-colors flex-shrink-0"
+                  >−</button>
+                  <div className="flex-1 field-input text-center font-ui font-bold text-[#0f2557] text-lg py-2">
+                    {form.quantity}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => set('quantity', form.quantity + 1)}
+                    className="w-10 h-10 rounded-xl border-2 border-slate-200 hover:border-[#1a56db] text-[#0f2557] font-bold text-xl flex items-center justify-center transition-colors flex-shrink-0"
+                  >+</button>
+                </div>
+              </div>
+
+              <div>
                 <label className="field-label">ที่อยู่สำหรับจัดส่ง <span className="text-red-500">*</span></label>
                 <textarea
                   value={form.address}
@@ -158,32 +187,11 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
                 />
               </div>
 
-              <div>
-                <label className="field-label">ช่องทางการชำระเงิน <span className="text-red-500">*</span></label>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { value: 'โอนเงินผ่านธนาคาร', label: '🏦 โอนเงิน' },
-                    { value: 'เก็บเงินปลายทาง (COD)', label: '🚚 ปลายทาง (+20)' },
-                  ].map(opt => (
-                    <label
-                      key={opt.value}
-                      className={`flex items-center justify-center gap-2 p-3 rounded-2xl border-2 cursor-pointer transition-all text-xs font-thai font-semibold
-                        ${form.paymentMethod === opt.value
-                          ? 'border-[#1a56db] bg-[#f0f4ff] text-[#0f2557]'
-                          : 'border-slate-200 hover:border-[#1a56db]/40 text-slate-600'
-                        }`}
-                    >
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value={opt.value}
-                        checked={form.paymentMethod === opt.value}
-                        onChange={e => set('paymentMethod', e.target.value)}
-                        className="sr-only"
-                      />
-                      {opt.label}
-                    </label>
-                  ))}
+              <div className="bg-blue-50 border border-[#1a56db]/20 rounded-2xl p-3 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#1a56db]/10 flex items-center justify-center flex-shrink-0 text-lg">🏦</div>
+                <div>
+                  <div className="font-ui font-semibold text-[#0f2557] text-sm">ชำระเงินผ่านการโอนเงิน</div>
+                  <div className="font-thai text-slate-500 text-xs mt-0.5">ทางเจ้าหน้าที่จะส่งเลขบัญชีหลังยืนยันคำสั่งซื้อ</div>
                 </div>
               </div>
 
