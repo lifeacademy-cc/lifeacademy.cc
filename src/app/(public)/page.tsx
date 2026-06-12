@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  let youtubeUrl = 'https://www.youtube.com/watch?v=ScMzIvxBSi4'
+  let youtubeUrl = 'https://youtu.be/5UIH9YGVTIo?si=_p-5eufPacp6lcTs'
   try {
     const supabase = createClient()
     const { data } = await supabase

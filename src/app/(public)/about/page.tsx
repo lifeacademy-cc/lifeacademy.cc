@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Sparkles, Calendar, Target, Award, Users, Shield, ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
+import VideoSection from '@/components/sections/VideoSection'
 
 export const metadata: Metadata = {
   title: 'เกี่ยวกับเรา — LIFE Academy',
@@ -53,6 +54,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Intro Video Section */}
+      <VideoSection videoUrl="https://youtu.be/5UIH9YGVTIo?si=_p-5eufPacp6lcTs" />
 
       {/* Vision & Mission Section */}
       <section className="py-20 px-4 sm:px-6 bg-[#0f2557] text-white relative overflow-hidden" id="vision">

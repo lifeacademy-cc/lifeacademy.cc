@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Star, CheckCircle2, ChevronDown } from 'lucide-react'
+import { ArrowRight, Star, CheckCircle2, ChevronDown, Play } from 'lucide-react'
 
 const stats = [
   { value: 14,    suffix: '+', label: 'ปีประสบการณ์' },
@@ -121,6 +121,13 @@ export default function HeroSection() {
             >
               ดูหลักสูตรทั้งหมด
             </Link>
+            <a
+              href="#intro-video"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-red-600/10 hover:bg-red-600/20 text-white font-semibold font-ui rounded-2xl border border-red-600/30 transition-all duration-200 hover:-translate-y-0.5 text-sm"
+            >
+              <Play className="w-4 h-4 fill-white text-red-500" />
+              รับชมวิดีโอแนะนำ
+            </a>
           </div>
         </div>
 
