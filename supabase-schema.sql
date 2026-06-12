@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS courses (
   name_th             TEXT,
   level               TEXT NOT NULL CHECK (level IN ('primary','secondary','high','exam')),
   subject             TEXT NOT NULL CHECK (subject IN ('math','english','science','thai','social','physics','chemistry','biology')),
-  format              TEXT NOT NULL CHECK (format IN ('onsite','online','private')),
+  format              TEXT NOT NULL CHECK (format IN ('onsite','online','private','elearning')),
   price               NUMERIC(10,2) NOT NULL,
   description         TEXT,
   max_students        INTEGER DEFAULT 10,

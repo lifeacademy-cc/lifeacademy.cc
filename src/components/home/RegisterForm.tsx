@@ -149,15 +149,16 @@ export default function RegisterForm() {
       {/* Format */}
       <div>
         <label className="field-label">รูปแบบการเรียน <span className="text-red-500">*</span></label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: 'onsite',  label: '🏫 ที่สถาบัน' },
-            { value: 'online',  label: '💻 ออนไลน์' },
-            { value: 'private', label: '👤 ส่วนตัว' },
+            { value: 'onsite',    label: '🏫 ที่สถาบัน' },
+            { value: 'online',    label: '💻 ออนไลน์' },
+            { value: 'private',   label: '👤 ส่วนตัว' },
+            { value: 'elearning', label: '📖 E-Learning' },
           ].map(opt => (
             <label
               key={opt.value}
-              className={`flex items-center justify-center gap-2 p-3 rounded-2xl border-2 cursor-pointer transition-all text-sm font-thai
+              className={`flex items-center justify-center gap-2 p-3 rounded-2xl border-2 cursor-pointer transition-all text-xs sm:text-sm font-thai
                 ${form.format === opt.value
                   ? 'border-[#1a56db] bg-[#f0f4ff] text-[#0f2557] font-semibold'
                   : 'border-[#e2e8f0] hover:border-[#1a56db]/40'
@@ -168,7 +169,7 @@ export default function RegisterForm() {
                 name="format"
                 value={opt.value}
                 checked={form.format === opt.value}
-                onChange={e => set('format', e.target.value as 'onsite' | 'online' | 'private')}
+                onChange={e => set('format', e.target.value as any)}
                 className="sr-only"
               />
               {opt.label}

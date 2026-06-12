@@ -19,6 +19,7 @@ const formats = [
   { value: 'onsite', label: '🏫 เรียนที่สถาบัน (Onsite)' },
   { value: 'online', label: '💻 เรียนออนไลน์สด (Online)' },
   { value: 'private', label: '👤 เรียนแบบส่วนตัว (Private)' },
+  { value: 'elearning', label: '📖 เรียนออนไลน์ E-Learning' },
 ]
 
 export default function CourseFilter({

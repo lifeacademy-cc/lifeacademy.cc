@@ -10,7 +10,7 @@ export interface Course {
   name_th?: string
   level: 'primary' | 'secondary' | 'high' | 'exam'
   subject: 'math' | 'english' | 'science' | 'thai' | 'social' | 'physics' | 'chemistry' | 'biology'
-  format: 'onsite' | 'online' | 'private'
+  format: 'onsite' | 'online' | 'private' | 'elearning'
   price: number
   description?: string
   max_students: number
@@ -157,7 +157,7 @@ export interface RegisterFormInput {
   email?: string
   level: string
   subject: string
-  format: 'onsite' | 'online' | 'private'
+  format: 'onsite' | 'online' | 'private' | 'elearning'
   message?: string
 }
 

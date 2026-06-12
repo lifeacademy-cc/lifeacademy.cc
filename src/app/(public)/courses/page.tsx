@@ -31,6 +31,10 @@ const mockCourses: Course[] = [
   // Online
   { id: 'o1', name: 'คณิต Online (ทุกระดับ)',           level: 'secondary', subject: 'math',      format: 'online', price: 1600, max_students: 5,  sessions_per_week: 2, enrolled_count: 3, description: 'เรียนออนไลน์สด ม.1–6 ครูสอนตัวต่อตัวผ่าน Zoom ตอบคำถามสดทันใจ สะดวกทุกที่', is_active: true, created_at: '' },
   { id: 'o2', name: 'อังกฤษ Online (ทุกระดับ)',         level: 'secondary', subject: 'english',   format: 'online', price: 1600, max_students: 5,  sessions_per_week: 2, enrolled_count: 2, description: 'เรียนภาษาอังกฤษออนไลน์ ครูสอนสด โต้ตอบทันที ได้บรรยากาศเหมือนห้องเรียนจริง', is_active: true, created_at: '' },
+
+  // E-Learning
+  { id: 'el1', name: 'คณิตศาสตร์ ม.4 (E-Learning)',       level: 'high',      subject: 'math',      format: 'elearning', price: 990, max_students: 999, sessions_per_week: 0, enrolled_count: 45, description: 'เรียนรู้ผ่านวิดีโอคุณภาพสูง ทบทวนได้ไม่จำกัด พร้อมเอกสารประกอบการเรียนครบชุด', is_active: true, created_at: '' },
+  { id: 'el2', name: 'อังกฤษ TCAS Grammar (E-Learning)', level: 'exam',      subject: 'english',   format: 'elearning', price: 1290, max_students: 999, sessions_per_week: 0, enrolled_count: 120, description: 'สรุปไวยากรณ์ที่ออกสอบบ่อยที่สุด ตะลุยโจทย์แนวข้อสอบจริง เรียนได้ทุกที่ทุกเวลา', is_active: true, created_at: '' },
 ]
 
 export default async function CoursesPage({

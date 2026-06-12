@@ -33,6 +33,7 @@ const navLinks: NavLink[] = [
     submenu: [
       { href: '/services/study-plan', label: 'ปรึกษาการวางแผนติว ม.1/ม.4' },
       { href: '/services/life-skills', label: 'ปรึกษาการพัฒนาทักษะชีวิต' },
+      { href: '/life-future-skill', label: 'Life Future Skill' },
     ]
   },
   { href: '/hall-of-fame', label: 'คนเก่งของเรา' },
