@@ -5,7 +5,13 @@
       "Bash(npx next:*)",
       "Bash(npx @opennextjs/cloudflare@latest build)",
       "Bash(npx wrangler:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(find \"E:/00.1_DenD3v_AI/Web_03.1\\)Life_academy.cc/src\" -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec grep -l \"handleSubmit\\\\|onSubmit\\\\|fetch.*POST\" {} \\\\;)",
+      "Bash(curl:*)",
+      "Bash(npm run:*)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(node:*)",
+      "mcp__claude_ai_Vercel__deploy_to_vercel"
     ]
   }
 }
