@@ -3,22 +3,20 @@
 import { useState } from 'react'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
 import type { RegisterFormInput } from '@/types'
+import { LEVELS } from '@/types'
 
-const levels = [
-  { value: 'primary',   label: 'ประถมศึกษา (ป.1–6)' },
-  { value: 'secondary', label: 'มัธยมต้น (ม.1–3)' },
-  { value: 'high',      label: 'มัธยมปลาย (ม.4–6)' },
-  { value: 'exam',      label: 'เตรียมสอบ (TCAS/GAT/PAT)' },
-]
 const subjects = [
-  { value: 'math',      label: 'คณิตศาสตร์ 📐' },
-  { value: 'english',   label: 'ภาษาอังกฤษ 🔤' },
-  { value: 'science',   label: 'วิทยาศาสตร์ 🔬' },
-  { value: 'thai',      label: 'ภาษาไทย 📖' },
-  { value: 'physics',   label: 'ฟิสิกส์ ⚡' },
-  { value: 'chemistry', label: 'เคมี 🧪' },
-  { value: 'biology',   label: 'ชีววิทยา 🌿' },
-  { value: 'social',    label: 'สังคมศึกษา 🌏' },
+  { value: 'exam_m1',        label: 'ติวเข้า ม.1 🎯' },
+  { value: 'exam_m4',        label: 'ติวเข้า ม.4 🎯' },
+  { value: 'exam_m1_pccp',   label: 'ติวเข้า ม.1 จุฬาภรณ์ฯ 🏆' },
+  { value: 'math',           label: 'คณิตศาสตร์ 📐' },
+  { value: 'english',        label: 'ภาษาอังกฤษ 🔤' },
+  { value: 'science',        label: 'วิทยาศาสตร์ 🔬' },
+  { value: 'thai',           label: 'ภาษาไทย 📖' },
+  { value: 'physics',        label: 'ฟิสิกส์ ⚡' },
+  { value: 'chemistry',      label: 'เคมี 🧪' },
+  { value: 'biology',        label: 'ชีววิทยา 🌿' },
+  { value: 'social',         label: 'สังคมศึกษา 🌏' },
 ]
 
 const INITIAL: RegisterFormInput = {
@@ -132,7 +130,7 @@ export default function RegisterForm() {
           </label>
           <select value={form.level} onChange={e => set('level', e.target.value)} className="field-input" required>
             <option value="">เลือกระดับชั้น...</option>
-            {levels.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+            {LEVELS.filter(l => l.value !== 'future_skill').map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
           </select>
         </div>
         <div>
