@@ -8,7 +8,7 @@ export interface Course {
   id: string
   name: string
   name_th?: string
-  level: 'primary' | 'secondary' | 'high' | 'exam' | 'future_skill'
+  level: 'kg' | 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6' | 'm1' | 'm2' | 'm3' | 'future_skill'
   subject: 'math' | 'english' | 'science' | 'thai' | 'social' | 'physics' | 'chemistry' | 'biology' | 'mind'
   format: 'onsite' | 'online' | 'private' | 'elearning'
   price: number
@@ -264,10 +264,16 @@ export const SUBJECTS: SubjectLabel[] = [
 ]
 
 export const LEVELS: LevelLabel[] = [
-  { value: 'primary',   label: 'ประถมศึกษา',   short: 'ป.' },
-  { value: 'secondary', label: 'มัธยมต้น',     short: 'ม.ต้น' },
-  { value: 'high',      label: 'มัธยมปลาย',    short: 'ม.ปลาย' },
-  { value: 'exam',      label: 'เตรียมสอบ',    short: 'สอบ' },
+  { value: 'kg', label: 'อนุบาล', short: 'อ.' },
+  { value: 'p1', label: 'ป.1', short: 'ป.1' },
+  { value: 'p2', label: 'ป.2', short: 'ป.2' },
+  { value: 'p3', label: 'ป.3', short: 'ป.3' },
+  { value: 'p4', label: 'ป.4', short: 'ป.4' },
+  { value: 'p5', label: 'ป.5', short: 'ป.5' },
+  { value: 'p6', label: 'ป.6', short: 'ป.6' },
+  { value: 'm1', label: 'ม.1', short: 'ม.1' },
+  { value: 'm2', label: 'ม.2', short: 'ม.2' },
+  { value: 'm3', label: 'ม.3', short: 'ม.3' },
   { value: 'future_skill', label: 'Life Future Skill', short: 'Future' },
 ]
 

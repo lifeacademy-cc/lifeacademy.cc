@@ -7,7 +7,7 @@ import type { Course } from '@/types'
 const demoCourses: Course[] = [
   {
     id: 'p_read_write', name: 'คอร์ส “อ่านออกเขียนได้”', name_th: 'อ่านออกเขียนได้',
-    level: 'primary', subject: 'thai', format: 'onsite',
+    level: 'p1', subject: 'thai', format: 'onsite',
     price: 1500, description: 'สำหรับนักเรียนชั้น อนุบาล 3 - ป.1 ที่สะกดคำยังไม่เป็น หรือยังอ่านไม่ออกเขียนไม่ได้และอ่านหนังสือไม่คล่อง',
     max_students: 8, sessions_per_week: 2, is_active: true, created_at: '',
     enrolled_count: 3,
@@ -21,28 +21,28 @@ const demoCourses: Course[] = [
   },
   {
     id: 'p_math_4_6', name: 'คณิตศาสตร์ ประถม 4–6 (พื้นฐานแข็งแกร่ง)', name_th: 'คณิต ประถมปลาย',
-    level: 'primary', subject: 'math', format: 'onsite',
+    level: 'p6', subject: 'math', format: 'onsite',
     price: 1500, description: 'เสริมพื้นฐานคณิตศาสตร์ สร้างความเข้าใจที่มั่นคงในโจทย์ปัญหาและสมการ ปูทางสู่ ม.ต้น',
     max_students: 10, sessions_per_week: 2, is_active: true, created_at: '',
     enrolled_count: 7,
   },
   {
     id: 'p_exam_m1', name: 'คอร์สประถมเตรียมสอบเข้า ม.1 (คณิต-วิทย์-อังกฤษ)', name_th: 'เตรียมสอบเข้า ม.1',
-    level: 'primary', subject: 'math', format: 'onsite',
+    level: 'p6', subject: 'math', format: 'onsite',
     price: 1800, description: 'ติวเข้มและตะลุยโจทย์ 3 วิชาหลักเพื่อสอบเข้า ม.1 โรงเรียนดังระดับจังหวัด',
     max_students: 8, sessions_per_week: 2, is_active: true, created_at: '',
     enrolled_count: 4,
   },
   {
     id: 's_math_m4', name: 'คณิตศาสตร์ ม.ต้น (เตรียมสอบเข้า ม.4)', name_th: 'คณิต เตรียมสอบ ม.4',
-    level: 'secondary', subject: 'math', format: 'onsite',
+    level: 'm3', subject: 'math', format: 'onsite',
     price: 1800, description: 'เตรียมสอบเข้า ม.4 โรงเรียนชั้นนำ ตะลุยโจทย์จริงและเทคนิคพิเศษคณิตศาสตร์ ม.1-3',
     max_students: 8, sessions_per_week: 2, is_active: true, created_at: '',
     enrolled_count: 5,
   },
   {
     id: 's_sci_m4', name: 'วิทยาศาสตร์ ม.ต้น (เตรียมสอบเข้า ม.4)', name_th: 'วิทย์ เตรียมสอบ ม.4',
-    level: 'secondary', subject: 'science', format: 'onsite',
+    level: 'm3', subject: 'science', format: 'onsite',
     price: 1800, description: 'สรุปวิชาวิทยาศาสตร์ (ฟิสิกส์ เคมี ชีววิทยา ดาราศาสตร์) พร้อมข้อสอบเก่าเข้า ม.4',
     max_students: 8, sessions_per_week: 2, is_active: true, created_at: '',
     enrolled_count: 6,

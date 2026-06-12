@@ -54,10 +54,16 @@ export default async function AdminCoursesPage() {
         <div className="flex items-center gap-3 w-full md:w-auto">
           <select className="flex-1 md:flex-none px-4 py-2 rounded-xl border border-slate-200 bg-white text-sm font-thai text-slate-600 focus:ring-2 focus:ring-[#1a56db]/20 transition-all outline-none">
             <option value="">ทุกระดับชั้น</option>
-            <option value="primary">ประถมศึกษา</option>
-            <option value="secondary">มัธยมต้น</option>
-            <option value="high">มัธยมปลาย</option>
-            <option value="exam">เตรียมสอบ</option>
+            <option value="kg">อนุบาล</option>
+            <option value="p1">ป.1</option>
+            <option value="p2">ป.2</option>
+            <option value="p3">ป.3</option>
+            <option value="p4">ป.4</option>
+            <option value="p5">ป.5</option>
+            <option value="p6">ป.6</option>
+            <option value="m1">ม.1</option>
+            <option value="m2">ม.2</option>
+            <option value="m3">ม.3</option>
             <option value="future_skill">Life Future Skill</option>
           </select>
           <select className="flex-1 md:flex-none px-4 py-2 rounded-xl border border-slate-200 bg-white text-sm font-thai text-slate-600 focus:ring-2 focus:ring-[#1a56db]/20 transition-all outline-none">

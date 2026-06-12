@@ -5,13 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, Star, Award, CheckCircle2, ChevronRight, MessageCircle, Phone, Loader2, Sparkles } from 'lucide-react'
 import { cn, formatPrice } from '@/lib/utils/format'
 import type { LevelTestInput, LevelTestResult, ApiResponse } from '@/types'
-
-const levels = [
-  { value: 'primary', label: 'ประถมศึกษา (ป.1–6)', icon: '🎒' },
-  { value: 'secondary', label: 'มัธยมต้น (ม.1–3)', icon: '📐' },
-  { value: 'high', label: 'มัธยมปลาย (ม.4–6)', icon: '🧪' },
-  { value: 'exam', label: 'เตรียมสอบ (TCAS/A-Level)', icon: '🎓' },
-]
+import { LEVELS } from '@/types'
 
 const subjects = [
   { value: 'math', label: 'คณิตศาสตร์', icon: '📐' },

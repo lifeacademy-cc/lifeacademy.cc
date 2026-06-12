@@ -12,10 +12,10 @@ import {
 
 // --- HIGH-FIDELITY MOCK FALLBACK DATA ---
 const mockCourses = [
-  { id: 'c1', name: 'คณิตศาสตร์ ม.ต้น (เน้นสอบเข้า ม.4)', subject: 'math', level: 'secondary' },
-  { id: 'c2', name: 'ภาษาอังกฤษ Grammar & TCAS (A-Level)', subject: 'english', level: 'high' },
-  { id: 'c3', name: 'ฟิสิกส์เข้มข้น ม.ปลาย (เตรียมสอบวิศวะฯ)', subject: 'physics', level: 'high' },
-  { id: 'c4', name: 'เคมี + ชีววิทยา สายแพทย์/พยาบาล TCAS', subject: 'chemistry', level: 'exam' }
+  { id: 'c1', name: 'คณิตศาสตร์ ม.ต้น (เน้นสอบเข้า ม.4)', subject: 'math', level: 'm3' },
+  { id: 'c2', name: 'ภาษาอังกฤษ Grammar & TCAS (A-Level)', subject: 'english', level: 'm3' },
+  { id: 'c3', name: 'ฟิสิกส์เข้มข้น ม.ปลาย (เตรียมสอบวิศวะฯ)', subject: 'physics', level: 'm3' },
+  { id: 'c4', name: 'เคมี + ชีววิทยา สายแพทย์/พยาบาล TCAS', subject: 'chemistry', level: 'm3' }
 ]
 
 const mockTeachers = [
