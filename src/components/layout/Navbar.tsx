@@ -27,6 +27,8 @@ const navLinks: NavLink[] = [
       { href: '/courses?level=exam&q=จุฬาภรณ์', label: 'ติวเข้า ม.1 จุฬาภรณ์ฯ' },
       { href: '/courses?level=primary', label: 'ระดับประถมศึกษา' },
       { href: '/courses?level=secondary', label: 'ระดับมัธยมศึกษา' },
+      { href: '/courses/onsite', label: '🏫 เรียนที่สถาบัน (Onsite)' },
+      { href: '/elearning', label: '📖 E-Learning' },
     ]
   },
   {
