@@ -178,6 +178,15 @@ export interface LevelTestInput {
   answers?: Record<string, string>
 }
 
+export interface BookOrderInput {
+  customerName: string
+  phone: string
+  address: string
+  bookTitle: string
+  totalPrice: number
+  paymentMethod: 'โอนเงินผ่านธนาคาร' | 'เก็บเงินปลายทาง'
+}
+
 export interface LevelTestResult {
   recommendedLevel: string
   description: string

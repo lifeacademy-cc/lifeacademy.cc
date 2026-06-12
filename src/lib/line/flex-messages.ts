@@ -372,3 +372,93 @@ export function lowScoreAlertFlex(data: {
   }
 }
 
+// ─── Book Order Flex Card ──────────────────────────────────
+
+export function bookOrderFlex(data: {
+  customerName: string
+  phone: string
+  address: string
+  bookTitle: string
+  totalPrice: number
+  paymentMethod: string
+}) {
+  return {
+    type: 'flex',
+    altText: `📦 คำสั่งซื้อใหม่: ${data.bookTitle} | ${data.customerName}`,
+    contents: {
+      type: 'bubble',
+      size: 'kilo',
+      header: {
+        type: 'box',
+        layout: 'vertical',
+        backgroundColor: '#1a56db',
+        paddingAll: '16px',
+        contents: [
+          {
+            type: 'text',
+            text: '🛒 คำสั่งซื้อหนังสือใหม่',
+            color: '#ffffff',
+            size: 'md',
+            weight: 'bold',
+          },
+          {
+            type: 'text',
+            text: new Date().toLocaleDateString('th-TH', {
+              year: 'numeric', month: 'long', day: 'numeric',
+              hour: '2-digit', minute: '2-digit',
+            }),
+            color: '#94a3b8',
+            size: 'xs',
+            margin: 'xs',
+          }
+        ]
+      },
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        paddingAll: '16px',
+        spacing: 'sm',
+        contents: [
+          row('👤 ชื่อลูกค้า', data.customerName),
+          row('📞 เบอร์โทร', data.phone),
+          row('📚 หนังสือ', data.bookTitle),
+          row('💰 ยอดรวม', `฿${data.totalPrice}`),
+          row('💳 ชำระเงิน', data.paymentMethod),
+          {
+            type: 'text',
+            text: '📍 ที่อยู่จัดส่ง:',
+            size: 'xs',
+            color: '#64748b',
+            weight: 'bold',
+            marginTop: '8px'
+          },
+          {
+            type: 'text',
+            text: data.address,
+            size: 'sm',
+            color: '#334155',
+            wrap: true
+          }
+        ]
+      },
+      footer: {
+        type: 'box',
+        layout: 'vertical',
+        paddingAll: '12px',
+        contents: [
+          {
+            type: 'button',
+            style: 'primary',
+            color: '#0f2557',
+            action: {
+              type: 'uri',
+              label: '📞 โทรหาลูกค้า',
+              uri: `tel:${data.phone}`,
+            },
+          },
+        ],
+      },
+    }
+  }
+}
+

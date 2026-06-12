@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { pushToAdmin, absentAlertFlex, weeklyReportFlex, lowScoreAlertFlex } from '@/lib/line/flex-messages'
+import { pushToAdmin, absentAlertFlex, weeklyReportFlex, lowScoreAlertFlex, bookOrderFlex } from '@/lib/line/flex-messages'
 import { sendLowScoreAlertEmail } from '@/lib/email/client'
 import type { ApiResponse } from '@/types'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { type, studentName, level, courseName, presentCount, totalSessions, avgScore, teacherComments, score, maxScore, date, email } = body
+    const { 
+      type, 
+      studentName, level, courseName, presentCount, totalSessions, avgScore, teacherComments, score, maxScore, date, email,
+      customerName, phone, address, bookTitle, totalPrice, paymentMethod
+    } = body
 
     if (!type) {
       return NextResponse.json<ApiResponse>({ success: false, error: 'กรุณาระบุประเภทการแจ้งเตือน (type)' }, { status: 400 })
@@ -74,6 +78,17 @@ export async function POST(request: NextRequest) {
           console.error('Email notify API route error:', emailErr)
         }
       }
+    } else if (type === 'book_order') {
+      flexPayload = bookOrderFlex({
+        customerName: customerName || 'ลูกค้าทั่วไป',
+        phone: phone || '-',
+        address: address || 'ไม่ระบุที่อยู่',
+        bookTitle: bookTitle || 'หนังสือ LIFE Academy',
+        totalPrice: Number(totalPrice || 0),
+        paymentMethod: paymentMethod || 'โอนเงินผ่านธนาคาร'
+      })
+      await pushToAdmin([flexPayload])
+
     } else {
       return NextResponse.json<ApiResponse>({ success: false, error: 'ไม่พบประเภทการแจ้งเตือนที่กำหนด' }, { status: 400 })
     }
