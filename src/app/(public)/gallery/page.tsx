@@ -20,7 +20,13 @@ function toCategory(raw: string | null | undefined): Category {
   return 'classroom'
 }
 
-export default async function GalleryPage() {
+export default async function GalleryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>
+}) {
+  const resolvedParams = await searchParams
+  const currentCategory = resolvedParams.category || 'all'
   let dynamicItems: GalleryItem[] | undefined
 
   try {
@@ -66,7 +72,7 @@ export default async function GalleryPage() {
       </section>
 
       {/* Gallery Section */}
-      <ExhibitionGallery items={dynamicItems} />
+      <ExhibitionGallery items={dynamicItems} initialCategory={currentCategory} />
     </div>
   )
 }
