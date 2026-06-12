@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { Award, Users, BookOpen, TrendingUp, Shield, Heart, CheckCircle2 } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Award, Users, BookOpen, TrendingUp, Shield, Heart, CheckCircle2, Trophy, Sparkles, Star, X, ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react'
 
 const features = [
   {
@@ -69,6 +69,13 @@ const testimonials = [
   },
 ]
 
+const featuredAchievements = [
+  { id: 1, src: '/success-1.jpg', category: 'onet-100', name: 'น้องภูมิใจ', achievement: 'O-NET 100 คะแนนเต็ม', school: 'วิชา ภาษาอังกฤษ' },
+  { id: 2, src: '/success-2.jpg', category: 'onet-100', name: 'น้องไอซ์', achievement: 'O-NET 100 คะแนนเต็ม', school: 'วิชา คณิตศาสตร์' },
+  { id: 5, src: '/success-5.jpg', category: 'exam-pass', name: 'น้องฝุ้นฝุ้น', achievement: 'สอบติด ม.1 ห้องเรียนพิเศษ SMT', school: 'โรงเรียนหาดใหญ่วิทยาลัย' },
+  { id: 7, src: '/success-7.jpg', category: 'exam-pass', name: 'น้องเจนนี่', achievement: 'สอบติด ม.1 ห้องโครงการ EP', school: 'โรงเรียนหาดใหญ่วิทยาลัย' },
+]
+
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -89,6 +96,17 @@ function useScrollReveal() {
 
 export default function AboutSection() {
   const ref = useScrollReveal()
+  const [selectedImageIdx, setSelectedImageIdx] = useState<number | null>(null)
+
+  const handlePrev = () => {
+    if (selectedImageIdx === null) return
+    setSelectedImageIdx(selectedImageIdx === 0 ? featuredAchievements.length - 1 : selectedImageIdx - 1)
+  }
+
+  const handleNext = () => {
+    if (selectedImageIdx === null) return
+    setSelectedImageIdx(selectedImageIdx === featuredAchievements.length - 1 ? 0 : selectedImageIdx + 1)
+  }
 
   return (
     <div ref={ref}>
@@ -161,65 +179,135 @@ export default function AboutSection() {
         </div>
       </section>
 
-      {/* Leadership Section */}
-      <section className="section bg-[#f8fafc] border-y border-[#e2e8f0]">
+      {/* Student Achievements Section */}
+      <section className="section bg-[#f8fafc] border-y border-[#e2e8f0]" id="success">
         <div className="container-max">
           <div className="text-center mb-12 animate-on-scroll">
-            <span className="section-tag">ทีมผู้บริหารสถาบัน</span>
-            <h2 className="section-title mt-2">ผู้บริหารสถาบัน LIFE Academy</h2>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 font-ui font-semibold text-xs tracking-wider uppercase mb-3">
+              <Trophy className="w-3.5 h-3.5" /> Wall of Fame
+            </span>
+            <h2 className="section-title mt-1">คนเก่งของเรา</h2>
             <p className="section-subtitle mx-auto">
-              มุ่งมั่นยกระดับวิชาการและดูแลเอาใจใส่นักเรียนทุกคนอย่างทั่วถึง
+              ความภาคภูมิใจและผลสัมฤทธิ์ทางการศึกษาที่ยอดเยี่ยมของน้องๆ LIFE Academy จากความตั้งใจและเทคนิคการเรียนที่มีประสิทธิภาพ
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* CEO Card */}
-            <div className="card flex flex-col sm:flex-row items-center gap-6 p-6 bg-white hover:shadow-lg transition-all duration-300 group hover:-translate-y-0.5">
-              <div className="w-32 h-40 rounded-2xl overflow-hidden flex-shrink-0 border border-slate-100 shadow-sm relative bg-slate-50">
-                <img src="/ceo.jpg" alt="นางสาวอุทัยวรรณ ธรรมโภคิน" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute bottom-2 left-2 bg-[#f59e0b] text-[#0f2557] text-[10px] font-bold px-2 py-0.5 rounded-lg shadow-sm">CEO</div>
-              </div>
-              <div className="text-center sm:text-left flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-ui font-extrabold text-lg text-[#0f2557]">นางสาวอุทัยวรรณ ธรรมโภคิน</h3>
-                  <p className="font-thai text-[#f59e0b] text-xs font-semibold mt-1">CEO & Founder / ผู้ก่อตั้งสถาบัน</p>
-                  <p className="font-thai text-[#475569] text-xs mt-3 leading-relaxed">
-                    “มุ่งมั่นปั้นคนเก่ง ปูพื้นฐานความรู้เคียงคู่การสร้างคนดีเพื่ออนาคตของเด็กหาดใหญ่ทุกคน”
-                  </p>
-                </div>
-                <div className="font-thai text-[10px] text-[#94a3b8] mt-4 border-t border-slate-100 pt-3">
-                  บริหารและพัฒนาผู้เรียนสู่ความสำเร็จกว่า 14 ปี
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {featuredAchievements.map((item, idx) => (
+              <div
+                key={item.id}
+                onClick={() => setSelectedImageIdx(idx)}
+                className="group bg-[#f8fafc] rounded-3xl overflow-hidden border border-[#e2e8f0]/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              >
+                {/* Image with Decorative Overlay */}
+                <div className="relative aspect-square overflow-hidden bg-slate-50">
+                  <img
+                    src={item.src}
+                    alt={`${item.name} - ${item.achievement}`}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  
+                  {/* Brand Logo Accent */}
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center border border-white/40 shadow-sm">
+                    <GraduationCap className="w-4 h-4 text-amber-500" />
+                  </div>
 
-            {/* Manager Card */}
-            <div className="card flex flex-col sm:flex-row items-center gap-6 p-6 bg-white hover:shadow-lg transition-all duration-300 group hover:-translate-y-0.5">
-              <div className="w-32 h-40 rounded-2xl overflow-hidden flex-shrink-0 border border-slate-100 shadow-sm relative bg-slate-50">
-                <img src="/manager.jpg" alt="นายอาลาวี มูลทรัพย์" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute bottom-2 left-2 bg-[#1a56db] text-white text-[10px] font-bold px-2 py-0.5 rounded-lg shadow-sm">Manager</div>
-              </div>
-              <div className="text-center sm:text-left flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-ui font-extrabold text-lg text-[#0f2557]">นายอาลาวี มูลทรัพย์</h3>
-                  <p className="font-thai text-[#1a56db] text-xs font-semibold mt-1">ผู้จัดการสาขาหาดใหญ่</p>
-                  <p className="font-thai text-[#475569] text-xs mt-3 leading-relaxed">
-                    “ดูแลนักเรียนและผู้ปกครองเหมือนครอบครัวเดียวกัน เพื่อความสุขและสิ่งที่ดีที่สุดในการเรียนรู้”
-                  </p>
+                  <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="bg-amber-500 text-slate-900 font-ui font-extrabold text-xs px-4 py-2 rounded-2xl shadow-lg flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5" /> คลิกชมใบประกาศ
+                    </span>
+                  </div>
                 </div>
-                <div className="font-thai text-[10px] text-[#94a3b8] mt-4 border-t border-slate-100 pt-3">
-                  ควบคุมมาตรฐานวิชาการและการสอบ Level Test
+
+                {/* Text Area */}
+                <div className="p-5 flex-1 flex flex-col justify-between bg-white border-t border-slate-100/50">
+                  <div>
+                    <div className="flex items-center gap-1 text-amber-600 font-ui font-extrabold text-[10px] uppercase tracking-wider">
+                      <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                      {item.category === 'onet-100' ? 'ONET 100 FULL' : 'ENTRANCE PASS'}
+                    </div>
+                    <h3 className="font-ui font-extrabold text-base text-[#0f2557] mt-1.5 line-clamp-1">
+                      {item.name}
+                    </h3>
+                    <p className="font-thai font-semibold text-slate-700 text-xs mt-1 leading-snug">
+                      {item.achievement}
+                    </p>
+                  </div>
+                  
+                  <div className="font-thai text-[11px] text-slate-500 mt-2.5 border-t border-slate-100 pt-2 line-clamp-1">
+                    🏫 {item.school}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
 
           <div className="text-center mt-10 animate-on-scroll">
-            <a href="/teachers" className="btn-outline font-ui font-semibold inline-flex items-center gap-1">
-              ทำความรู้จักคณะครูผู้สอนทั้งหมด →
+            <a href="/hall-of-fame" className="btn-primary bg-[#0f2557] hover:bg-[#1a56db] text-white py-3 px-8 font-ui font-bold text-xs shadow-md shadow-blue-900/10 inline-flex items-center gap-1.5 rounded-2xl">
+              ดูทำเนียบคนเก่งทั้งหมด →
             </a>
           </div>
         </div>
+
+        {/* Lightbox Modal */}
+        {selectedImageIdx !== null && (
+          <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 select-none">
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedImageIdx(null)}
+              className="absolute top-4 right-4 z-[110] bg-white/10 hover:bg-white/20 text-white rounded-full p-2.5 transition-colors"
+              aria-label="ปิดใบประกาศ"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Left navigation arrow */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-colors hidden sm:block"
+              aria-label="ใบประกาศก่อนหน้า"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Main view container */}
+            <div className="max-w-2xl w-full max-h-[85vh] flex flex-col justify-center items-center text-white relative px-4">
+              <img
+                src={featuredAchievements[selectedImageIdx].src}
+                alt={`${featuredAchievements[selectedImageIdx].name} - ${featuredAchievements[selectedImageIdx].achievement}`}
+                className="max-w-full max-h-[72vh] object-contain rounded-2xl shadow-2xl border border-white/10 bg-slate-900"
+              />
+              
+              {/* Bottom details pill */}
+              <div className="bg-slate-900/80 backdrop-blur-md rounded-2xl px-6 py-4 mt-4 text-center max-w-lg border border-white/5 shadow-lg">
+                <div className="text-amber-500 font-ui font-extrabold text-[10px] uppercase tracking-widest mb-1.5 flex items-center justify-center gap-1">
+                  <Trophy className="w-3.5 h-3.5" /> CONGRATULATIONS TO SUCCESS
+                </div>
+                <h3 className="font-ui font-extrabold text-base text-white">
+                  {featuredAchievements[selectedImageIdx].name}
+                </h3>
+                <p className="font-thai text-white/80 text-xs mt-1.5">
+                  {featuredAchievements[selectedImageIdx].achievement} ({featuredAchievements[selectedImageIdx].school})
+                </p>
+              </div>
+            </div>
+
+            {/* Right navigation arrow */}
+            <button
+              onClick={handleNext}
+              className="absolute right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-colors hidden sm:block"
+              aria-label="ใบประกาศถัดไป"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Mobile swipe tip */}
+            <div className="absolute bottom-4 left-0 right-0 text-center sm:hidden text-white/30 text-[10px] font-ui">
+              ← ปัดซ้าย หรือ ปัดขวา เพื่อเลื่อนสไลด์ใบประกาศ →
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Features grid */}
