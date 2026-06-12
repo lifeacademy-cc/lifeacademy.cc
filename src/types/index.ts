@@ -181,10 +181,13 @@ export interface LevelTestInput {
 export interface BookOrderInput {
   customerName: string
   phone: string
+  lineId?: string
   address: string
   bookTitle: string
   totalPrice: number
   paymentMethod: 'โอนเงินผ่านธนาคาร' | 'เก็บเงินปลายทาง'
+}
+
 }
 
 export interface LevelTestResult {

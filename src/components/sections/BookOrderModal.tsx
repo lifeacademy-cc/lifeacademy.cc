@@ -13,6 +13,7 @@ interface BookOrderModalProps {
 interface OrderForm {
   customerName: string
   phone: string
+  lineId: string
   address: string
   quantity: number
 }
@@ -20,6 +21,7 @@ interface OrderForm {
 const INITIAL_FORM: OrderForm = {
   customerName: '',
   phone: '',
+  lineId: '',
   address: '',
   quantity: 1
 }
@@ -55,6 +57,7 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
           totalPrice,
           customerName: form.customerName,
           phone: form.phone,
+          lineId: form.lineId,
           address: form.address,
           paymentMethod: 'โอนเงินผ่านธนาคาร'
         }),
@@ -153,6 +156,17 @@ export default function BookOrderModal({ isOpen, onClose, bookTitle, price }: Bo
                   placeholder="08X-XXX-XXXX"
                   className="field-input"
                   required
+                />
+              </div>
+
+              <div>
+                <label className="field-label">Line ID (ระบุเพื่อให้เจ้าหน้าที่ส่งเลขพัสดุ)</label>
+                <input
+                  type="text"
+                  value={form.lineId}
+                  onChange={e => set('lineId', e.target.value)}
+                  placeholder="เช่น life_academy"
+                  className="field-input"
                 />
               </div>
 

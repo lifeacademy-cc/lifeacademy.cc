@@ -25,11 +25,14 @@ export async function POST(request: NextRequest) {
       .insert({
         customer_name:  body.customerName.trim(),
         phone:          body.phone.trim(),
+        line_id:        body.lineId?.trim() || null,
         address:        body.address.trim(),
         book_title:     body.bookTitle,
         total_price:    body.totalPrice,
         payment_method: body.paymentMethod,
         status:         'pending',
+      })
+
       })
 
     if (dbError) {
