@@ -223,6 +223,24 @@ export default function StudentBookingPage() {
 
         if (error) throw error
 
+        // Send LINE Flex Message notification to admin
+        const matchedCourse = courses.find(c => c.id === selectedCourse)
+        const matchedTeacher = teachers.find(t => t.id === selectedTeacher)
+        await fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'booking_request',
+            studentEmail: user.email,
+            courseName: matchedCourse?.name ?? selectedCourse,
+            teacherName: matchedTeacher?.name ?? selectedTeacher,
+            bookingDate,
+            startTime: slot.start,
+            endTime: slot.end,
+            notes: notes || undefined,
+          }),
+        }).catch(err => console.error('LINE notify error:', err))
+
         showToast('จองคลาสเรียนสำเร็จและบันทึกสู่ระบบแล้ว 🎉', 'success')
         
         // Refresh booking list

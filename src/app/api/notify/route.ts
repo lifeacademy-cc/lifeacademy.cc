@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { pushToAdmin, absentAlertFlex, weeklyReportFlex, lowScoreAlertFlex, bookOrderFlex } from '@/lib/line/flex-messages'
+import { pushToAdmin, absentAlertFlex, weeklyReportFlex, lowScoreAlertFlex, bookOrderFlex, bookingRequestFlex } from '@/lib/line/flex-messages'
 import { sendLowScoreAlertEmail } from '@/lib/email/client'
 import type { ApiResponse } from '@/types'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { 
-      type, 
+    const {
+      type,
       studentName, level, courseName, presentCount, totalSessions, avgScore, teacherComments, score, maxScore, date, email,
-      customerName, phone, address, bookTitle, totalPrice, paymentMethod
+      customerName, phone, address, bookTitle, totalPrice, paymentMethod,
+      studentEmail, teacherName, bookingDate, startTime, endTime, notes
     } = body
 
     if (!type) {
@@ -87,6 +88,13 @@ export async function POST(request: NextRequest) {
         totalPrice: Number(totalPrice || 0),
         paymentMethod: paymentMethod || 'โอนเงินผ่านธนาคาร'
       })
+      await pushToAdmin([flexPayload])
+
+    } else if (type === 'booking_request') {
+      if (!studentEmail || !courseName || !teacherName || !bookingDate || !startTime || !endTime) {
+        return NextResponse.json<ApiResponse>({ success: false, error: 'ข้อมูลการจองไม่ครบถ้วน' }, { status: 400 })
+      }
+      flexPayload = bookingRequestFlex({ studentEmail, courseName, teacherName, bookingDate, startTime, endTime, notes })
       await pushToAdmin([flexPayload])
 
     } else {

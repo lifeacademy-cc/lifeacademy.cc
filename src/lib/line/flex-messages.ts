@@ -4,7 +4,7 @@ import type { RegisterFormInput } from '@/types'
 
 const LINE_API = 'https://api.line.me/v2/bot/message/push'
 const TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN!
-const ADMIN_USER_ID = process.env.LINE_ADMIN_USER_ID ?? 'Ue652c6a963399b81a811eb04fe88c123'
+const ADMIN_USER_ID = process.env.LINE_ADMIN_USER_ID ?? 'U300d2c60364086582882b4c49d6c75bb'
 
 // ─── Push message helper ───────────────────────────────────
 
@@ -372,11 +372,101 @@ export function lowScoreAlertFlex(data: {
   }
 }
 
+// ─── Booking Request Flex Card ────────────────────────────
+
+export function bookingRequestFlex(data: {
+  studentEmail: string
+  courseName: string
+  teacherName: string
+  bookingDate: string
+  startTime: string
+  endTime: string
+  notes?: string
+}) {
+  const formattedDate = new Date(data.bookingDate).toLocaleDateString('th-TH', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  })
+
+  return {
+    type: 'flex',
+    altText: `📅 คำขอจองคลาสใหม่: ${data.courseName} | ${data.studentEmail}`,
+    contents: {
+      type: 'bubble',
+      size: 'kilo',
+      header: {
+        type: 'box',
+        layout: 'vertical',
+        backgroundColor: '#0d9488',
+        paddingAll: '16px',
+        contents: [
+          {
+            type: 'text',
+            text: '📅 คำขอจองคลาสเรียนใหม่',
+            color: '#ffffff',
+            size: 'md',
+            weight: 'bold',
+          },
+          {
+            type: 'text',
+            text: new Date().toLocaleDateString('th-TH', {
+              year: 'numeric', month: 'long', day: 'numeric',
+              hour: '2-digit', minute: '2-digit',
+            }),
+            color: '#99f6e4',
+            size: 'xs',
+            margin: 'xs',
+          },
+        ],
+      },
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        paddingAll: '16px',
+        spacing: 'sm',
+        contents: [
+          row('📧 นักเรียน', data.studentEmail),
+          row('📚 หลักสูตร', data.courseName),
+          row('👨‍🏫 ครูผู้สอน', data.teacherName),
+          row('📅 วันเรียน', formattedDate),
+          row('🕐 เวลา', `${data.startTime.substring(0, 5)} - ${data.endTime.substring(0, 5)} น.`),
+          ...(data.notes ? [row('💬 หมายเหตุ', data.notes)] : []),
+          {
+            type: 'text',
+            text: '⏳ สถานะ: รอดำเนินการ — กรุณายืนยันหรือปฏิเสธคิวให้นักเรียนทราบ',
+            size: 'xs',
+            color: '#d97706',
+            wrap: true,
+            margin: 'md',
+          },
+        ],
+      },
+      footer: {
+        type: 'box',
+        layout: 'vertical',
+        paddingAll: '12px',
+        contents: [
+          {
+            type: 'button',
+            style: 'primary',
+            color: '#0d9488',
+            action: {
+              type: 'uri',
+              label: '🌐 เปิดหน้า Admin จัดการการจอง',
+              uri: `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://lifeacademy.co.th'}/admin`,
+            },
+          },
+        ],
+      },
+    },
+  }
+}
+
 // ─── Book Order Flex Card ──────────────────────────────────
 
 export function bookOrderFlex(data: {
   customerName: string
   phone: string
+  lineId?: string
   address: string
   bookTitle: string
   totalPrice: number
@@ -421,6 +511,7 @@ export function bookOrderFlex(data: {
         contents: [
           row('👤 ชื่อลูกค้า', data.customerName),
           row('📞 เบอร์โทร', data.phone),
+          ...(data.lineId ? [row('📲 Line ID', data.lineId)] : []),
           row('📚 หนังสือ', data.bookTitle),
           row('💰 ยอดรวม', `฿${data.totalPrice}`),
           row('💳 ชำระเงิน', data.paymentMethod),
