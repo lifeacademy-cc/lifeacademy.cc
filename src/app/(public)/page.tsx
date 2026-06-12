@@ -5,7 +5,7 @@ import CoursesPreview    from '@/components/sections/CoursesPreview'
 import ExhibitionGallery from '@/components/sections/ExhibitionGallery'
 import WallOfFame        from '@/components/sections/WallOfFame'
 import RegisterForm      from '@/components/home/RegisterForm'
-import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, Clock, MessageCircle, Facebook } from 'lucide-react'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 
@@ -94,6 +94,25 @@ function ContactSection() {
                     <a href="https://lin.ee/xvYZMZP" target="_blank" rel="noopener noreferrer" className="font-thai text-[#64748b] text-sm hover:text-[#00b900] transition-colors">
                       แอดเพื่อนไลน์สถาบัน
                     </a>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#1877f2]/10 flex items-center justify-center flex-shrink-0">
+                    <Facebook className="w-4 h-4 text-[#1877f2]" />
+                  </div>
+                  <div className="flex-grow">
+                    <div className="font-ui font-semibold text-[#0f2557] text-sm">Facebook Pages</div>
+                    <div className="flex flex-col gap-2 mt-1.5 font-thai text-[#64748b] text-xs">
+                      <a href="https://www.facebook.com/LifeHadyai?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877f2] flex items-center gap-1 transition-colors font-medium">
+                        🔵 LIFE Academy (เพจหลัก)
+                      </a>
+                      <a href="https://www.facebook.com/share/1ESKT4vfJy/" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877f2] flex items-center gap-1 transition-colors font-medium">
+                        🔵 ติวเข้า ม.1 By LIFE
+                      </a>
+                      <a href="https://www.facebook.com/share/1EaYQDFr6G/" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877f2] flex items-center gap-1 transition-colors font-medium">
+                        🔵 ติวสอบเข้าโรงเรียนจุฬาภรณ์ ทั่วประเทศ
+                      </a>
+                    </div>
                   </div>
                 </li>
                 <li className="flex gap-3">
