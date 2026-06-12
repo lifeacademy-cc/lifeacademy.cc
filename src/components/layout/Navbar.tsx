@@ -19,6 +19,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: '/', label: 'หน้าหลัก' },
   {
+    href: '/#courses',
     label: 'หลักสูตร',
     submenu: [
       { href: '/courses?level=exam&q=ม.1', label: 'ติวเข้า ม.1' },
@@ -29,6 +30,7 @@ const navLinks: NavLink[] = [
     ]
   },
   {
+    href: '/#contact',
     label: 'บริการ',
     submenu: [
       { href: '/services/study-plan', label: 'ปรึกษาการวางแผนติว ม.1/ม.4' },
@@ -36,8 +38,9 @@ const navLinks: NavLink[] = [
       { href: '/life-future-skill', label: 'Life Future Skill' },
     ]
   },
-  { href: '/hall-of-fame', label: 'คนเก่งของเรา' },
+  { href: '/#success', label: 'คนเก่งของเรา' },
   {
+    href: '/#about',
     label: 'เกี่ยวกับเรา',
     submenu: [
       { href: '/about#history', label: 'ประวัติความเป็นมา' },
@@ -48,7 +51,7 @@ const navLinks: NavLink[] = [
     ]
   },
   { href: '/bookstore', label: 'ร้านหนังสือ' },
-  { href: '/contact', label: 'ติดต่อเรา' },
+  { href: '/#contact', label: 'ติดต่อเรา' },
 ]
 
 export default function Navbar() {
@@ -112,7 +115,8 @@ export default function Navbar() {
                   onMouseEnter={() => setActiveDropdown(link.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button
+                  <Link
+                    href={link.href!}
                     className={cn(
                       "flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-thai text-[#1e293b] hover:bg-[#f0f4ff] transition-colors",
                       isOpen && "bg-[#f0f4ff] text-[#1a56db]"
@@ -120,7 +124,7 @@ export default function Navbar() {
                   >
                     {link.label}
                     <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", isOpen && "rotate-180")} />
-                  </button>
+                  </Link>
                   
                   {/* Dropdown Menu */}
                   {isOpen && (
@@ -186,13 +190,21 @@ export default function Navbar() {
               const isExpanded = !!mobileExpanded[link.label]
               return (
                 <div key={link.label} className="border-b border-[#f1f5f9] last:border-0">
-                  <button
-                    onClick={(e) => toggleMobileSubmenu(link.label, e)}
-                    className="flex items-center justify-between w-full px-4 py-3 text-[#1e293b] font-thai font-medium rounded-xl hover:bg-[#f0f4ff] transition-colors"
-                  >
-                    <span>{link.label}</span>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isExpanded && "rotate-180")} />
-                  </button>
+                  <div className="flex items-center justify-between w-full rounded-xl hover:bg-[#f0f4ff] transition-colors">
+                    <Link
+                      href={link.href!}
+                      onClick={() => setOpen(false)}
+                      className="flex-1 px-4 py-3 text-[#1e293b] font-thai font-medium text-left"
+                    >
+                      {link.label}
+                    </Link>
+                    <button
+                      onClick={(e) => toggleMobileSubmenu(link.label, e)}
+                      className="px-4 py-3 text-[#1e293b] hover:text-[#1a56db] transition-colors"
+                    >
+                      <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isExpanded && "rotate-180")} />
+                    </button>
+                  </div>
                   
                   {isExpanded && (
                     <div className="pl-4 pb-2 bg-[#f8fafc] rounded-xl mb-1">
