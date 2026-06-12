@@ -10,5 +10,10 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
-  }
+  },
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "lifeacademy.cc", "custom_domain": true, "zone_name": "lifeacademy.cc" },
+    { "pattern": "www.lifeacademy.cc", "custom_domain": true, "zone_name": "lifeacademy.cc" }
+  ]
 }

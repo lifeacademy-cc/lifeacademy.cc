@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   title: 'LIFE Academy — สถาบันติวเตอร์ หาดใหญ่ | เรียนให้ได้ผล ด้วยครูมืออาชีพ',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   let youtubeUrl = 'https://www.youtube.com/watch?v=ScMzIvxBSi4'
   try {
