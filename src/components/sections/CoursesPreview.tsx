@@ -13,11 +13,11 @@ const demoCourses: Course[] = [
     enrolled_count: 3,
   },
   {
-    id: 'p_math_1_3', name: 'คณิตศาสตร์ ประถม 1–3 (ปูพื้นฐาน)', name_th: 'คณิต ประถมต้น',
-    level: 'primary', subject: 'math', format: 'onsite',
-    price: 1500, description: 'เน้นปูพื้นฐานคณิตศาสตร์และพัฒนาทักษะการคิดคำนวณเบื้องต้นอย่างเป็นระบบ',
-    max_students: 10, sessions_per_week: 2, is_active: true, created_at: '',
-    enrolled_count: 5,
+    id: 'fs_mind_brain', name: 'Mind & Brain Booster', name_th: 'พัฒนาสมาธิและโฟกัส',
+    level: 'future_skill', subject: 'mind', format: 'onsite',
+    price: 1500, description: 'ฝึกสติและสมาธิเบื้องต้นผ่านกิจกรรมแสนสนุก ช่วยแก้ภาวะใจลอย สมาธิสั้น เพิ่มโฟกัสในการเรียนและการใช้ชีวิต (ทดลองเรียนฟรี!)',
+    max_students: 8, sessions_per_week: 2, is_active: true, created_at: '',
+    enrolled_count: 2,
   },
   {
     id: 'p_math_4_6', name: 'คณิตศาสตร์ ประถม 4–6 (พื้นฐานแข็งแกร่ง)', name_th: 'คณิต ประถมปลาย',

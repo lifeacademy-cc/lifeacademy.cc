@@ -8,8 +8,8 @@ export interface Course {
   id: string
   name: string
   name_th?: string
-  level: 'primary' | 'secondary' | 'high' | 'exam'
-  subject: 'math' | 'english' | 'science' | 'thai' | 'social' | 'physics' | 'chemistry' | 'biology'
+  level: 'primary' | 'secondary' | 'high' | 'exam' | 'future_skill'
+  subject: 'math' | 'english' | 'science' | 'thai' | 'social' | 'physics' | 'chemistry' | 'biology' | 'mind'
   format: 'onsite' | 'online' | 'private' | 'elearning'
   price: number
   description?: string
@@ -260,6 +260,7 @@ export const SUBJECTS: SubjectLabel[] = [
   { value: 'chemistry', label: 'เคมี',           color: 'bg-yellow-100 text-yellow-800', icon: '🧪' },
   { value: 'biology',   label: 'ชีววิทยา',       color: 'bg-emerald-100 text-emerald-800', icon: '🌿' },
   { value: 'social',    label: 'สังคมศึกษา',     color: 'bg-orange-100 text-orange-800', icon: '🌏' },
+  { value: 'mind',      label: 'พัฒนาสมาธิ',    color: 'bg-rose-100 text-rose-800',    icon: '🧠' },
 ]
 
 export const LEVELS: LevelLabel[] = [
@@ -267,6 +268,7 @@ export const LEVELS: LevelLabel[] = [
   { value: 'secondary', label: 'มัธยมต้น',     short: 'ม.ต้น' },
   { value: 'high',      label: 'มัธยมปลาย',    short: 'ม.ปลาย' },
   { value: 'exam',      label: 'เตรียมสอบ',    short: 'สอบ' },
+  { value: 'future_skill', label: 'Life Future Skill', short: 'Future' },
 ]
 
 export type UserRole = 'student' | 'teacher' | 'admin' | 'parent'

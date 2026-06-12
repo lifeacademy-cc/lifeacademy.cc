@@ -58,6 +58,7 @@ export default async function AdminCoursesPage() {
             <option value="secondary">มัธยมต้น</option>
             <option value="high">มัธยมปลาย</option>
             <option value="exam">เตรียมสอบ</option>
+            <option value="future_skill">Life Future Skill</option>
           </select>
           <select className="flex-1 md:flex-none px-4 py-2 rounded-xl border border-slate-200 bg-white text-sm font-thai text-slate-600 focus:ring-2 focus:ring-[#1a56db]/20 transition-all outline-none">
             <option value="">ทุกรูปแบบ</option>

@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS courses (
   id                  UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name                TEXT NOT NULL,
   name_th             TEXT,
-  level               TEXT NOT NULL CHECK (level IN ('primary','secondary','high','exam')),
-  subject             TEXT NOT NULL CHECK (subject IN ('math','english','science','thai','social','physics','chemistry','biology')),
+  level               TEXT NOT NULL CHECK (level IN ('primary','secondary','high','exam','future_skill')),
+  subject             TEXT NOT NULL CHECK (subject IN ('math','english','science','thai','social','physics','chemistry','biology','mind')),
   format              TEXT NOT NULL CHECK (format IN ('onsite','online','private','elearning')),
   price               NUMERIC(10,2) NOT NULL,
   description         TEXT,
@@ -239,7 +239,8 @@ INSERT INTO courses (name, name_th, level, subject, format, price, description, 
   ('คอร์สประถมเตรียมสอบเข้า ม.1 (คณิต-วิทย์-อังกฤษ)', 'เตรียมสอบเข้า ม.1', 'primary', 'math', 'onsite', 1800, 'ติวเข้มและตะลุยโจทย์ 3 วิชาหลักเพื่อสอบเข้า ม.1 โรงเรียนดังระดับจังหวัด', 8, 2),
   ('คณิตศาสตร์ ม.ต้น (เตรียมสอบเข้า ม.4)', 'คณิต เตรียมสอบ ม.4', 'secondary', 'math', 'onsite', 1800, 'เตรียมสอบเข้า ม.4 โรงเรียนชั้นนำ ตะลุยโจทย์จริงและเทคนิคพิเศษคณิตศาสตร์ ม.1-3', 8, 2),
   ('วิทยาศาสตร์ ม.ต้น (เตรียมสอบเข้า ม.4)', 'วิทย์ เตรียมสอบ ม.4', 'secondary', 'science', 'onsite', 1800, 'สรุปวิชาวิทยาศาสตร์ (ฟิสิกส์ เคมี ชีววิทยา ดาราศาสตร์) พร้อมข้อสอบเก่าเข้า ม.4', 8, 2),
-  ('ภาษาอังกฤษ ม.ต้น (เตรียมสอบเข้า ม.4)', 'อังกฤษ เตรียมสอบ ม.4', 'secondary', 'english', 'onsite', 1800, 'เจาะลึก Grammar ศัพท์ระดับสูง และแนวข้อสอบ Reading & Conversation สำหรับสอบเข้า ม.4', 8, 2)
+  ('ภาษาอังกฤษ ม.ต้น (เตรียมสอบเข้า ม.4)', 'อังกฤษ เตรียมสอบ ม.4', 'secondary', 'english', 'onsite', 1800, 'เจาะลึก Grammar ศัพท์ระดับสูง และแนวข้อสอบ Reading & Conversation สำหรับสอบเข้า ม.4', 8, 2),
+  ('Mind & Brain Booster', 'พัฒนาสมาธิและโฟกัส', 'future_skill', 'mind', 'onsite', 1500, 'ฝึกสติและสมาธิเบื้องต้นผ่านกิจกรรมแสนสนุก ช่วยแก้ภาวะใจลอย สมาธิสั้น เพิ่มโฟกัสในการเรียนและการใช้ชีวิต (ทดลองเรียนฟรี!)', 8, 2)
 ON CONFLICT DO NOTHING;
 
 INSERT INTO teachers (name, subject, experience_years, education, bio) VALUES

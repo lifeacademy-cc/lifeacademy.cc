@@ -37,6 +37,7 @@ export function getSubjectColor(subject: string): string {
     chemistry: 'bg-yellow-100 text-yellow-800',
     biology:   'bg-emerald-100 text-emerald-800',
     social:    'bg-orange-100 text-orange-800',
+    mind:      'bg-rose-100 text-rose-800',
   }
   return map[subject] ?? 'bg-gray-100 text-gray-800'
 }
@@ -45,6 +46,7 @@ export function getLevelLabel(level: string): string {
   const map: Record<string, string> = {
     primary: 'ประถมศึกษา', secondary: 'มัธยมต้น',
     high: 'มัธยมปลาย', exam: 'เตรียมสอบ',
+    future_skill: 'Life Future Skill',
   }
   return map[level] ?? level
 }
@@ -55,6 +57,7 @@ export function getSubjectLabel(subject: string): string {
     science: 'วิทยาศาสตร์', thai: 'ภาษาไทย',
     physics: 'ฟิสิกส์', chemistry: 'เคมี',
     biology: 'ชีววิทยา', social: 'สังคมศึกษา',
+    mind: 'พัฒนาสมาธิ',
   }
   return map[subject] ?? subject
 }

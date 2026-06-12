@@ -23,6 +23,7 @@ const mockCourses: Course[] = [
   { id: 's_math_m4', name: 'คณิตศาสตร์ ม.ต้น (เตรียมสอบเข้า ม.4)', level: 'secondary', subject: 'math', format: 'onsite', price: 1800, max_students: 8, sessions_per_week: 2, enrolled_count: 5, description: 'เตรียมสอบเข้า ม.4 โรงเรียนชั้นนำ ตะลุยโจทย์จริงและเทคนิคพิเศษคณิตศาสตร์ ม.1-3', is_active: true, created_at: '' },
   { id: 's_sci_m4', name: 'วิทยาศาสตร์ ม.ต้น (เตรียมสอบเข้า ม.4)', level: 'secondary', subject: 'science', format: 'onsite', price: 1800, max_students: 8, sessions_per_week: 2, enrolled_count: 6, description: 'สรุปวิชาวิทยาศาสตร์ (ฟิสิกส์ เคมี ชีววิทยา ดาราศาสตร์) พร้อมข้อสอบเก่าเข้า ม.4', is_active: true, created_at: '' },
   { id: 's_eng_m4', name: 'ภาษาอังกฤษ ม.ต้น (เตรียมสอบเข้า ม.4)', level: 'secondary', subject: 'english', format: 'onsite', price: 1800, max_students: 8, sessions_per_week: 2, enrolled_count: 4, description: 'เจาะลึก Grammar ศัพท์ระดับสูง และแนวข้อสอบ Reading & Conversation สำหรับสอบเข้า ม.4', is_active: true, created_at: '' },
+  { id: 'fs_mind_brain', name: 'Mind & Brain Booster', level: 'future_skill', subject: 'mind', format: 'onsite', price: 1500, max_students: 8, sessions_per_week: 2, enrolled_count: 2, description: 'ฝึกสติและสมาธิเบื้องต้นผ่านกิจกรรมแสนสนุก ช่วยแก้ภาวะใจลอย สมาธิสั้น เพิ่มโฟกัสในการเรียนและการใช้ชีวิต (ทดลองเรียนฟรี!)', is_active: true, created_at: '' },
 ]
 
 export default async function CoursesPage({
