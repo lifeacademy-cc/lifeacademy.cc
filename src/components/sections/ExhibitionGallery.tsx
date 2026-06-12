@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Image as ImageIcon, Sparkles, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 
-interface GalleryItem {
+export interface GalleryItem {
   id: number
   src: string
   category: 'booth' | 'active' | 'mind' | 'classroom'
@@ -197,13 +197,15 @@ const categories = [
   { value: 'mind', label: '🧠 ฝึกสมาธิ & คลื่นสมอง' },
 ]
 
-export default function ExhibitionGallery() {
+export default function ExhibitionGallery({ items }: { items?: GalleryItem[] }) {
   const [activeCategory, setActiveCategory] = useState<string>('all')
   const [selectedImageIdx, setSelectedImageIdx] = useState<number | null>(null)
 
+  const sourceItems = items && items.length > 0 ? items : galleryItems
+
   const filteredItems = activeCategory === 'all'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeCategory)
+    ? sourceItems
+    : sourceItems.filter(item => item.category === activeCategory)
 
   const handlePrev = () => {
     if (selectedImageIdx === null) return
