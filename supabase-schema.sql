@@ -61,6 +61,44 @@ CREATE TABLE IF NOT EXISTS news (
   created_at          TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- ─── ADMIN & CONTENT TABLES ──────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS settings (
+  key                 TEXT PRIMARY KEY,
+  value               TEXT,
+  description         TEXT,
+  updated_at          TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS services (
+  id                  UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title               TEXT NOT NULL,
+  description         TEXT,
+  icon                TEXT,
+  image_url           TEXT,
+  is_active           BOOLEAN DEFAULT true,
+  created_at          TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS gallery (
+  id                  UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title               TEXT,
+  image_url           TEXT NOT NULL,
+  category            TEXT DEFAULT 'activity',
+  is_active           BOOLEAN DEFAULT true,
+  created_at          TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS course_videos (
+  id                  UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  course_id           UUID REFERENCES courses(id) ON DELETE CASCADE,
+  title               TEXT NOT NULL,
+  video_url           TEXT NOT NULL,
+  thumbnail_url       TEXT,
+  is_published        BOOLEAN DEFAULT true,
+  created_at          TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- ─── PHASE 2 TABLES ───────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS students (
