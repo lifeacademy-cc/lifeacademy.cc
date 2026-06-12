@@ -2,7 +2,10 @@ import RegisterForm from '@/components/home/RegisterForm'
 import { MapPin, Phone, Clock, MessageCircle, Facebook } from 'lucide-react'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'ติดต่อ / ลงทะเบียน — LIFE Academy' }
+export const metadata: Metadata = {
+  title: 'ติดต่อ / ลงทะเบียน — LIFE Academy',
+  description: 'ลงทะเบียนเรียนและทดสอบระดับฟรี ติดต่อ LIFE Academy หาดใหญ่ โทร 092-241-4289 หรือแอด LINE ทีมงานติดต่อกลับภายใน 1 ชั่วโมง',
+}
 
 export default function ContactPage() {
   return (
@@ -35,7 +38,7 @@ export default function ContactPage() {
                 <h3 className="font-ui font-bold text-[#0f2557] mb-4">ติดต่อเราโดยตรง</h3>
                 <ul className="space-y-4">
                   {[
-                    { Icon: Phone,          label: 'โทรศัพท์',   value: '082-496-5545',      href: 'tel:082-496-5545',                      color: 'bg-[#1a56db]/10 text-[#1a56db]' },
+                    { Icon: Phone,          label: 'โทรศัพท์',   value: '092-241-4289',      href: 'tel:092-241-4289',                      color: 'bg-[#1a56db]/10 text-[#1a56db]' },
                     { Icon: MessageCircle,  label: 'LINE OA',    value: 'แอดเพื่อนไลน์สถาบัน', href: 'https://lin.ee/xvYZMZP',   color: 'bg-[#00b900]/10 text-[#00b900]' },
                     { Icon: Facebook,       label: 'Facebook',   value: 'LIFE Hadyai',      href: 'https://www.facebook.com/LifeHadyai',  color: 'bg-[#1877f2]/10 text-[#1877f2]' },
                     { Icon: MapPin,         label: 'ที่อยู่',    value: ' LIFE Academy หาดใหญ่ (ดูแผนที่)', href: 'https://maps.app.goo.gl/2MtmNr2Dz5asx47t5', color: 'bg-[#dc2626]/10 text-[#dc2626]' },

@@ -12,18 +12,20 @@ interface CourseListInteractiveProps {
   initialCourses: Course[]
   defaultLevel?: string
   defaultSubject?: string
+  defaultSearchQuery?: string
 }
 
 export default function CourseListInteractive({
   initialCourses,
   defaultLevel = 'all',
   defaultSubject = '',
+  defaultSearchQuery = '',
 }: CourseListInteractiveProps) {
   // States
   const [activeTab, setActiveTab] = useState(defaultLevel)
   const [selectedSubject, setSelectedSubject] = useState(defaultSubject)
   const [selectedFormat, setSelectedFormat] = useState('')
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState(defaultSearchQuery)
   const [loading, setLoading] = useState(true)
 
   // Simulate skeleton loading on mount for visual premium polished feel
@@ -36,7 +38,8 @@ export default function CourseListInteractive({
   useEffect(() => {
     if (defaultLevel) setActiveTab(defaultLevel)
     if (defaultSubject) setSelectedSubject(defaultSubject)
-  }, [defaultLevel, defaultSubject])
+    if (defaultSearchQuery) setSearchQuery(defaultSearchQuery)
+  }, [defaultLevel, defaultSubject, defaultSearchQuery])
 
   // Filter logic
   const filteredCourses = useMemo(() => {

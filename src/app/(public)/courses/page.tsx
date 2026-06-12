@@ -36,7 +36,7 @@ const mockCourses: Course[] = [
 export default async function CoursesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ level?: string; subject?: string; format?: string }>
+  searchParams: Promise<{ level?: string; subject?: string; format?: string; q?: string }>
 }) {
   const resolvedSearchParams = await searchParams
   let courses: Course[] = []
@@ -62,6 +62,7 @@ export default async function CoursesPage({
   // Map incoming subject parameter if custom mapped
   const defaultLevel = resolvedSearchParams.level || 'all'
   const defaultSubject = resolvedSearchParams.subject || ''
+  const defaultSearch = resolvedSearchParams.q || ''
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -91,6 +92,7 @@ export default async function CoursesPage({
             initialCourses={courses} 
             defaultLevel={defaultLevel}
             defaultSubject={defaultSubject}
+            defaultSearchQuery={defaultSearch}
           />
         </div>
       </section>

@@ -102,7 +102,7 @@ export async function sendConfirmationEmail(data: RegisterFormInput) {
             {/* Footer */}
             <div style="background-color: #f8fafc; padding: 25px 30px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
               <span>© ${new Date().getFullYear()} LIFE Academy — สถาบันติวเตอร์ชั้นนำ หาดใหญ่ สงขลา</span><br />
-              <span style="display: block; margin-top: 5px;">ติดต่อสอบถาม: 082-496-5545 | LINE OA: แอดเพื่อนไลน์สถาบัน</span>
+              <span style="display: block; margin-top: 5px;">ติดต่อสอบถาม: 092-241-4289 | LINE OA: แอดเพื่อนไลน์สถาบัน</span>
             </div>
           </div>
         </div>

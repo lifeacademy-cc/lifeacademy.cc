@@ -1,21 +1,40 @@
 import HeroSection       from '@/components/sections/HeroSection'
 import AboutSection      from '@/components/sections/AboutSection'
+import VideoSection       from '@/components/sections/VideoSection'
 import CoursesPreview    from '@/components/sections/CoursesPreview'
 import ExhibitionGallery from '@/components/sections/ExhibitionGallery'
 import WallOfFame        from '@/components/sections/WallOfFame'
 import RegisterForm      from '@/components/home/RegisterForm'
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react'
 import type { Metadata } from 'next'
+import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
   title: 'LIFE Academy — สถาบันติวเตอร์ หาดใหญ่ | เรียนให้ได้ผล ด้วยครูมืออาชีพ',
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  let youtubeUrl = 'https://www.youtube.com/watch?v=ScMzIvxBSi4'
+  try {
+    const supabase = createClient()
+    const { data } = await supabase
+      .from('settings')
+      .select('value')
+      .eq('key', 'youtube_video_url')
+      .single()
+    
+    if (data?.value) {
+      youtubeUrl = data.value
+    }
+  } catch (e) {
+    // Fallback to mock/default url
+  }
+
   return (
     <>
       <HeroSection />
       <AboutSection />
+      <VideoSection videoUrl={youtubeUrl} />
       <CoursesPreview />
       <ExhibitionGallery />
       <WallOfFame />
@@ -59,8 +78,8 @@ function ContactSection() {
                   </div>
                   <div>
                     <div className="font-ui font-semibold text-[#0f2557] text-sm">โทรศัพท์</div>
-                    <a href="tel:082-496-5545" className="font-thai text-[#64748b] text-sm hover:text-[#1a56db] transition-colors">
-                      082-496-5545
+                    <a href="tel:092-241-4289" className="font-thai text-[#64748b] text-sm hover:text-[#1a56db] transition-colors">
+                      092-241-4289
                     </a>
                   </div>
                 </li>

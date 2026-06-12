@@ -5,6 +5,7 @@ import {
   ArrowUpRight, Clock, CheckCircle2,
 } from 'lucide-react'
 import Link from 'next/link'
+import YoutubeSettingForm from '@/components/admin/YoutubeSettingForm'
 
 export const metadata = { title: 'Admin Dashboard — LIFE Academy' }
 
@@ -34,6 +35,20 @@ export default async function AdminDashboardPage() {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
+
+  let youtubeUrl = 'https://www.youtube.com/watch?v=ScMzIvxBSi4'
+  try {
+    const { data } = await supabase
+      .from('settings')
+      .select('value')
+      .eq('key', 'youtube_video_url')
+      .single()
+    if (data?.value) {
+      youtubeUrl = data.value
+    }
+  } catch (e) {
+    // Fallback if table not queried
+  }
 
   // In production: check admin role
   // const role = user.user_metadata?.role
@@ -174,6 +189,9 @@ export default async function AdminDashboardPage() {
                 ))}
               </div>
             </div>
+
+            {/* YouTube Video Setting Form */}
+            <YoutubeSettingForm initialUrl={youtubeUrl} />
 
             <div className="rounded-2xl bg-gradient-to-br from-[#0f2557] to-[#1a56db] p-5 text-white">
               <div className="font-ui font-bold mb-1">📢 แจ้งเตือน</div>
