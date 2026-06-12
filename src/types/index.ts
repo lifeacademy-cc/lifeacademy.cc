@@ -188,8 +188,6 @@ export interface BookOrderInput {
   paymentMethod: 'โอนเงินผ่านธนาคาร' | 'เก็บเงินปลายทาง'
 }
 
-}
-
 export interface LevelTestResult {
   recommendedLevel: string
   description: string

@@ -33,8 +33,6 @@ export async function POST(request: NextRequest) {
         status:         'pending',
       })
 
-      })
-
     if (dbError) {
       console.error('Supabase insert error:', dbError)
       // Don't block LINE notification even if DB fails
