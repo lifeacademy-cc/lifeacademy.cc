@@ -47,10 +47,7 @@ const navLinks: NavLink[] = [
     label: 'แกลเลอรี',
     submenu: [
       { href: '/hall-of-fame', label: 'คนเก่งของเรา' },
-      { href: '/gallery?category=classroom', label: 'บรรยากาศการเรียน' },
-      { href: '/gallery?category=booth', label: 'บรรยากาศออกบูธ' },
-      { href: '/gallery?category=active', label: 'กิจกรรมฝึกทักษะชีวิต' },
-      { href: '/gallery', label: 'รวมผลงานสถาบัน' },
+      { href: '/gallery', label: 'ภาพกิจกรรมและผลงานสถาบัน' },
     ]
   },
   {
