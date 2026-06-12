@@ -117,6 +117,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href!}
+                    onClick={() => setActiveDropdown(null)}
                     className={cn(
                       "flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-thai text-[#1e293b] hover:bg-[#f0f4ff] transition-colors",
                       isOpen && "bg-[#f0f4ff] text-[#1a56db]"
@@ -128,17 +129,19 @@ export default function Navbar() {
                   
                   {/* Dropdown Menu */}
                   {isOpen && (
-                    <div className="absolute top-full left-0 mt-1 bg-white border border-[#e2e8f0] rounded-2xl shadow-xl py-2 min-w-[220px] animate-fade-in z-50">
-                      {link.submenu.map(sub => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          onClick={() => setActiveDropdown(null)}
-                          className="block px-4 py-2.5 text-xs text-[#475569] hover:text-[#1a56db] hover:bg-[#f0f4ff] font-thai transition-colors"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2 min-w-[220px] animate-fade-in z-50">
+                      <div className="bg-white border border-[#e2e8f0] rounded-2xl shadow-xl py-2">
+                        {link.submenu.map(sub => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="block px-4 py-2.5 text-xs text-[#475569] hover:text-[#1a56db] hover:bg-[#f0f4ff] font-thai transition-colors"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
