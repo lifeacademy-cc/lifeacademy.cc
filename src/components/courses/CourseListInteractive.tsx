@@ -95,9 +95,6 @@ export default function CourseListInteractive({
       { key: 'all',       label: 'ทั้งหมด',     count: baseList.length },
       { key: 'primary',   label: 'ประถม',       count: baseList.filter(c => c.level === 'primary').length },
       { key: 'secondary', label: 'ม.ต้น',       count: baseList.filter(c => c.level === 'secondary').length },
-      { key: 'high',      label: 'ม.ปลาย',      count: baseList.filter(c => c.level === 'high').length },
-      { key: 'exam',      label: 'เตรียมสอบ',   count: baseList.filter(c => c.level === 'exam').length },
-      { key: 'online',    label: 'ออนไลน์',     count: baseList.filter(c => c.format === 'online').length },
     ]
   }, [initialCourses, selectedSubject, selectedFormat, searchQuery])
 

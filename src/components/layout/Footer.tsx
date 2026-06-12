@@ -30,7 +30,7 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-3 mt-6">
               <a
-                href="https://www.facebook.com/LifeHadyai"
+                href="https://www.facebook.com/share/18wfEHGtfW/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#1877f2] flex items-center justify-center transition-colors"

@@ -40,7 +40,7 @@ export default function ContactPage() {
                   {[
                     { Icon: Phone,          label: 'โทรศัพท์',   value: '092-241-4289',      href: 'tel:092-241-4289',                      color: 'bg-[#1a56db]/10 text-[#1a56db]' },
                     { Icon: MessageCircle,  label: 'LINE OA',    value: 'แอดเพื่อนไลน์สถาบัน', href: 'https://lin.ee/xvYZMZP',   color: 'bg-[#00b900]/10 text-[#00b900]' },
-                    { Icon: Facebook,       label: 'Facebook',   value: 'LIFE Hadyai',      href: 'https://www.facebook.com/LifeHadyai',  color: 'bg-[#1877f2]/10 text-[#1877f2]' },
+                    { Icon: Facebook,       label: 'Facebook',   value: 'LIFE Hadyai',      href: 'https://www.facebook.com/share/18wfEHGtfW/',  color: 'bg-[#1877f2]/10 text-[#1877f2]' },
                     { Icon: MapPin,         label: 'ที่อยู่',    value: ' LIFE Academy หาดใหญ่ (ดูแผนที่)', href: 'https://maps.app.goo.gl/2MtmNr2Dz5asx47t5', color: 'bg-[#dc2626]/10 text-[#dc2626]' },
                     { Icon: Clock,          label: 'เวลาทำการ',  value: 'จ–ศ 14:00–20:00 | ส–อา 09:00–18:00', href: '#', color: 'bg-[#f59e0b]/10 text-[#f59e0b]' },
                   ].map(c => (

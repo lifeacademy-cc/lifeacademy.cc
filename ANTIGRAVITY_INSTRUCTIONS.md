@@ -23,7 +23,7 @@ created: พฤษภาคม 2569
 ชื่อ:        LIFE Academy
 ประเภท:      สถาบันติวเตอร์ หาดใหญ่ สงขลา
 ประสบการณ์:  14 ปี | นักเรียนสำเร็จกว่า 5,000 คน
-Facebook:   https://www.facebook.com/LifeHadyai
+Facebook:   https://www.facebook.com/share/18wfEHGtfW/
 Demo:       https://dencapvision.github.io/web-Life-Academy-Demo/
 ```
 
