@@ -118,18 +118,18 @@ export default function AboutSection() {
             {/* Image side */}
             <div className="animate-on-scroll order-2 lg:order-1">
               <div className="relative">
-                {/* Main image placeholder */}
-                <div className="aspect-square rounded-3xl bg-gradient-to-br from-[#0f2557] to-[#1a56db] flex items-center justify-center relative overflow-hidden">
-                  <div className="text-center text-white">
-                    <div className="font-display text-7xl font-bold opacity-20">14</div>
-                    <div className="font-display text-3xl font-bold">Years</div>
-                    <div className="font-thai text-sm text-white/60 mt-2">แห่งความสำเร็จ</div>
-                  </div>
+                {/* Main image */}
+                <div className="aspect-square rounded-3xl overflow-hidden relative border border-slate-100 shadow-md bg-slate-50 group">
+                  <img
+                    src="/about-hero.jpg"
+                    alt="LIFE Academy บรรยากาศแห่งความสำเร็จ"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  />
                   {/* Floating badges */}
-                  <div className="absolute top-6 -right-4 bg-[#f59e0b] text-[#0f2557] rounded-2xl px-4 py-2 shadow-lg font-ui font-bold text-sm">
+                  <div className="absolute top-6 -right-4 bg-[#f59e0b] text-[#0f2557] rounded-2xl px-4 py-2 shadow-lg font-ui font-bold text-sm z-10">
                     ⭐ 4.9/5 ดาว
                   </div>
-                  <div className="absolute bottom-8 -left-4 bg-white rounded-2xl px-4 py-3 shadow-lg">
+                  <div className="absolute bottom-8 -left-4 bg-white rounded-2xl px-4 py-3 shadow-lg z-10 border border-slate-100">
                     <div className="font-ui font-bold text-[#0f2557] text-sm">5,000+</div>
                     <div className="font-thai text-[#64748b] text-xs">นักเรียนสำเร็จ</div>
                   </div>

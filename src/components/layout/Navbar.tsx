@@ -42,7 +42,17 @@ const navLinks: NavLink[] = [
       { href: '/life-future-skill', label: 'Life Future Skill' },
     ]
   },
-  { href: '/hall-of-fame', label: 'คนเก่งของเรา' },
+  {
+    href: '/gallery',
+    label: 'แกลเลอรี',
+    submenu: [
+      { href: '/hall-of-fame', label: 'คนเก่งของเรา' },
+      { href: '/gallery?category=classroom', label: 'บรรยากาศการเรียน' },
+      { href: '/gallery?category=booth', label: 'บรรยากาศออกบูธ' },
+      { href: '/gallery?category=active', label: 'กิจกรรมฝึกทักษะชีวิต' },
+      { href: '/gallery', label: 'รวมผลงานสถาบัน' },
+    ]
+  },
   {
     href: '/about',
     label: 'เกี่ยวกับเรา',
@@ -51,7 +61,6 @@ const navLinks: NavLink[] = [
       { href: '/about#vision', label: 'วิสัยทัศน์ - พันธกิจ' },
       { href: '/about#team', label: 'ผู้บริหาร ทีมงาน' },
       { href: '/teachers', label: 'ครูผู้สอน' },
-      { href: '/gallery', label: 'ภาพบรรยากาศ' },
     ]
   },
   { href: '/bookstore', label: 'ร้านหนังสือ' },

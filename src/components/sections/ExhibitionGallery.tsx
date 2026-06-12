@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Image as ImageIcon, Sparkles, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 
 export interface GalleryItem {
@@ -197,9 +197,15 @@ const categories = [
   { value: 'mind', label: '🧠 ฝึกสมาธิ & คลื่นสมอง' },
 ]
 
-export default function ExhibitionGallery({ items }: { items?: GalleryItem[] }) {
-  const [activeCategory, setActiveCategory] = useState<string>('all')
+export default function ExhibitionGallery({ items, initialCategory = 'all' }: { items?: GalleryItem[], initialCategory?: string }) {
+  const [activeCategory, setActiveCategory] = useState<string>(initialCategory)
   const [selectedImageIdx, setSelectedImageIdx] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (initialCategory) {
+      setActiveCategory(initialCategory)
+    }
+  }, [initialCategory])
 
   const sourceItems = items && items.length > 0 ? items : galleryItems
 
