@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Menu, X, Phone, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils/format'
@@ -28,6 +28,8 @@ const navLinks: NavLink[] = [
       { href: '/courses?level=primary', label: 'ระดับประถมศึกษา' },
       { href: '/courses?level=secondary', label: 'ระดับมัธยมศึกษา' },
       { href: '/courses/onsite', label: '🏫 เรียนที่สถาบัน (Onsite)' },
+      { href: '/courses/online', label: '💻 เรียนออนไลน์สด (Online)' },
+      { href: '/courses/private', label: '👤 เรียนส่วนตัว (Private)' },
       { href: '/elearning', label: '📖 E-Learning' },
     ]
   },
@@ -61,6 +63,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({})
+  const navContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -70,7 +73,11 @@ export default function Navbar() {
 
   // Close dropdown on click outside
   useEffect(() => {
-    const handleClickOutside = () => setActiveDropdown(null)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navContainerRef.current && !navContainerRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null)
+      }
+    }
     window.addEventListener('click', handleClickOutside)
     return () => window.removeEventListener('click', handleClickOutside)
   }, [])
@@ -105,7 +112,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
+        <div ref={navContainerRef} className="hidden md:flex items-center gap-1">
           {navLinks.map(link => {
             if (link.submenu) {
               const isOpen = activeDropdown === link.label
@@ -113,7 +120,6 @@ export default function Navbar() {
                 <div 
                   key={link.label}
                   className="relative"
-                  onClick={(e) => e.stopPropagation()}
                   onMouseEnter={() => setActiveDropdown(link.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
@@ -131,7 +137,7 @@ export default function Navbar() {
                   
                   {/* Dropdown Menu */}
                   {isOpen && (
-                    <div className="absolute top-full left-0 pt-2 min-w-[220px] animate-fade-in z-50">
+                    <div className="absolute top-[calc(100%-4px)] left-0 pt-2 min-w-[220px] animate-fade-in z-50">
                       <div className="bg-white border border-[#e2e8f0] rounded-2xl shadow-xl py-2">
                         {link.submenu.map(sub => (
                           <Link
