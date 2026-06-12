@@ -8,8 +8,8 @@ export interface Course {
   id: string
   name: string
   name_th?: string
-  level: 'kg' | 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6' | 'm1' | 'm2' | 'm3' | 'future_skill'
-  subject: 'math' | 'english' | 'science' | 'thai' | 'social' | 'physics' | 'chemistry' | 'biology' | 'mind'
+  level: 'kg' | 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6' | 'm1' | 'm2' | 'm3' | 'future_skill' | 'primary' | 'secondary' | 'high' | 'exam'
+  subject: 'math' | 'english' | 'science' | 'thai' | 'social' | 'physics' | 'chemistry' | 'biology' | 'mind' | 'exam_m1' | 'exam_m4' | 'exam_m1_pccp' | 'life_skill'
   format: 'onsite' | 'online' | 'private' | 'elearning'
   price: number
   description?: string
