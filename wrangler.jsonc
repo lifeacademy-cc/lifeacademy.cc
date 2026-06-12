@@ -15,5 +15,11 @@
   "routes": [
     { "pattern": "lifeacademy.cc", "custom_domain": true, "zone_name": "lifeacademy.cc" },
     { "pattern": "www.lifeacademy.cc", "custom_domain": true, "zone_name": "lifeacademy.cc" }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "lifeacademy-media"
+    }
   ]
 }
