@@ -35,8 +35,8 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
       <VideoSection videoUrl={youtubeUrl} />
+      <AboutSection />
       <CoursesPreview />
       <ExhibitionGallery />
       <WallOfFame />
